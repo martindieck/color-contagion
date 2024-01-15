@@ -1,13 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmofga5mq6sek"]
+[gd_scene load_steps=4 format=3 uid="uid://dmofga5mq6sek"]
 
+[ext_resource type="Script" path="res://Scenes/game.gd" id="1_7wtfc"]
 [ext_resource type="PackedScene" uid="uid://cgy1it1dunhmf" path="res://Scenes/player.tscn" id="1_pmetn"]
+[ext_resource type="Texture2D" uid="uid://dyb78we1u31p0" path="res://Shaders/black.png" id="2_g05hh"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_7wtfc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+use_parent_material = true
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -23,3 +27,8 @@ color = Color(0, 0, 0, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_pmetn")]
 position = Vector2(960, 540)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(438, 231)
+scale = Vector2(0.106051, 0.107292)
+texture = ExtResource("2_g05hh")

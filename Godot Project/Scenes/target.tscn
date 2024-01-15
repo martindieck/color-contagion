@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvmk6nl8n8yw4"]
+
+[ext_resource type="Script" path="res://Scenes/target.gd" id="1_0ax7q"]
+[ext_resource type="Texture2D" uid="uid://dahiue1r1qcv0" path="res://Sprites/Target.png" id="1_d51mr"]
+
+[node name="Target" type="Node2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_0ax7q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_d51mr")
