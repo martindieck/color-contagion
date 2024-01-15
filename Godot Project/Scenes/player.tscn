@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://cgy1it1dunhmf"]
+[gd_scene load_steps=16 format=3 uid="uid://cgy1it1dunhmf"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_tu08t"]
 [ext_resource type="Texture2D" uid="uid://7mcffw3ynjxa" path="res://Sprites/Player_Idle-Sheet.png" id="2_5j3af"]
 [ext_resource type="Texture2D" uid="uid://rxqb8abg3rxj" path="res://Sprites/Player_Movement-Sheet.png" id="3_eshc2"]
+[ext_resource type="PackedScene" uid="uid://cj513qhaer8ld" path="res://Scenes/gun.tscn" id="4_qaufl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0te0w"]
 atlas = ExtResource("2_5j3af")
@@ -93,9 +94,12 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_q7ud0")
 animation = &"movement"
 autoplay = "movement"
-frame_progress = 0.00361756
+frame_progress = 0.408224
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_4t1l4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Gun" parent="." instance=ExtResource("4_qaufl")]
+position = Vector2(0, -16)
