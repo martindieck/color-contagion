@@ -6,7 +6,6 @@
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
-follow_viewport_enabled = true
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 8
