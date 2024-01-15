@@ -9,3 +9,7 @@ script = ExtResource("1_f4111")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_32sxk")
+
+[node name="ShootingPoint" type="Marker2D" parent="Sprite2D"]
+unique_name_in_owner = true
+position = Vector2(7, 0)
