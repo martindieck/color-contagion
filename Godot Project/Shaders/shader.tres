@@ -1,6 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://df2pwlsc15hb3"]
-
-[ext_resource type="Shader" path="res://Shaders/color.gdshader" id="1_wtcqd"]
-
-[resource]
-shader = ExtResource("1_wtcqd")

@@ -15,7 +15,10 @@ func change_tileset(bullet_position):
 	var x_coord = tile_pos.x
 	var y_coord = tile_pos.y
 	var dict_key = str(Vector2(x_coord,y_coord))
-	tile_dict[dict_key] = true
+	if dict_key in tile_dict && tile_dict[dict_key]:
+		pass
+	else:
+		tile_dict[dict_key] = true
 
 func _process(delta):
 	generate_chunk(player.position)
