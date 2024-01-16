@@ -6,7 +6,7 @@ var tile_choice = FastNoiseLite.new()
 @onready var width = get_viewport_rect().size.x/(tile_size - 1)
 @onready var height = get_viewport_rect().size.y/(tile_size - 1)
 
-@onready var player = get_parent().get_child(1)
+@onready var player = get_node("/root/Game/Player")
 
 var tile_dict = {}
 
