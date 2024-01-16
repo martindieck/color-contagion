@@ -1,19 +1,49 @@
 [gd_scene load_steps=5 format=3 uid="uid://jhqd3iimsw3n"]
 
-[ext_resource type="Texture2D" uid="uid://bol8qgpi2aqjc" path="res://Sprites/Terrain-Sheet.png" id="1_lcqf4"]
+[ext_resource type="Texture2D" uid="uid://bujntn61cwl53" path="res://Sprites/Full_Terrain-Sheet.png" id="2_4s4ki"]
 [ext_resource type="Script" path="res://terrain.gd" id="2_c6ha0"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xaspj"]
-texture = ExtResource("1_lcqf4")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7lfpm"]
+texture = ExtResource("2_4s4ki")
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/1 = 1
+0:0/1/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/1/physics_layer_0/angular_velocity = 0.0
 1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:0/0 = 0
-4:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0 = 0
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
 
-[sub_resource type="TileSet" id="TileSet_crgdy"]
-sources/0 = SubResource("TileSetAtlasSource_xaspj")
+[sub_resource type="TileSet" id="TileSet_wuhfj"]
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 2
+sources/0 = SubResource("TileSetAtlasSource_7lfpm")
 
-[node name="TileMap" type="TileMap"]
-tile_set = SubResource("TileSet_crgdy")
+[node name="Terrain" type="TileMap"]
+tile_set = SubResource("TileSet_wuhfj")
 format = 2
 script = ExtResource("2_c6ha0")
