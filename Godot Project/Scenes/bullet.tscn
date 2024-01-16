@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b8wknjdk855hl" path="res://Sprites/Bullet.png" id="2_wj32t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7xf0"]
-size = Vector2(12, 12)
+size = Vector2(2, 2)
 
 [node name="Bullet" type="Area2D"]
 top_level = true
