@@ -11,3 +11,29 @@ script = ExtResource("1_7wtfc")
 
 [node name="Player" parent="." instance=ExtResource("1_pmetn")]
 position = Vector2(960, 540)
+
+[node name="ColorRect" type="ColorRect" parent="Player"]
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 389.0
+offset_bottom = 24.0
+scale = Vector2(0.167, 0.167)
+
+[node name="TileCounter" type="Label" parent="Player/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -27.5
+offset_right = 32.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Counter"
+horizontal_alignment = 1
+vertical_alignment = 1

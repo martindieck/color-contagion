@@ -19,6 +19,7 @@ func change_tileset(bullet_position):
 		pass
 	else:
 		tile_dict[dict_key] = true
+		Global.tile_count += 1
 
 func _process(delta):
 	generate_chunk(player.position)
