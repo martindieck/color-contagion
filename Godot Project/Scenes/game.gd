@@ -7,7 +7,6 @@ extends Node2D
 var quotas = [50000, 120000, 220000, 400000]
 var round_times = [180, 180, 180, 180]
 var rounds = {}
-var current_round = 1
 
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -16,7 +15,7 @@ func _ready():
 	create_rounds_dict(quotas, round_times)
 
 func _physics_process(delta):
-	tile_counter.text = str(Global.tile_count) + " / " + str(rounds[current_round]["quota"])
+	tile_counter.text = str(Global.tile_count) + " / " + str(rounds[Global.current_round]["quota"])
 	#tile_counter.text = str(Engine.get_frames_per_second())
 
 func _on_round_timer_timeout():
