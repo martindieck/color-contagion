@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwab1l40ms2mt"]
+
+[ext_resource type="Script" path="res://Scenes/gun.gd" id="1_bjwl6"]
+[ext_resource type="Texture2D" uid="uid://b5bpvyw37lvlh" path="res://Sprites/minigun.png" id="2_5slb7"]
+[ext_resource type="Texture2D" uid="uid://bh0mla85ykg68" path="res://Sprites/minigun-Sheet.png" id="3_dx0ft"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu0y3"]
+atlas = ExtResource("3_dx0ft")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2n42"]
+atlas = ExtResource("3_dx0ft")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rm4q4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5slb7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu0y3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2n42")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 15.0
+}]
+
+[node name="Minigun" type="Node2D"]
+script = ExtResource("1_bjwl6")
+
+[node name="ShootingPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(7, 0)
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -0.5)
+sprite_frames = SubResource("SpriteFrames_rm4q4")
+animation = &"shoot"
+autoplay = "idle"
+frame_progress = 0.94853
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
