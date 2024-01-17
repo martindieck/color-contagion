@@ -4,6 +4,7 @@ extends Node2D
 
 @onready var tile_counter = get_node("/root/Game/Player/ColorRect/TileCounter")
 @onready var round_timer = get_node("/root/Game/RoundTimer")
+@onready var spawner = get_node("/root/Game/Player/Spawner/Path2D/SpawnPoint")
 
 var quotas = [500, 1200, 2500]
 var round_times = [18, 20, 180]
@@ -35,3 +36,12 @@ func _on_round_timer_timeout():
 func create_rounds_dict(quotas, round_times):
 	for round in range(quotas.size()):
 		rounds[round + 1] = {"quota": quotas[round], "time": round_times[round]}
+
+func spawn_mob():
+	var new_mob = preload("res://Scenes/farmer.tscn").instantiate()
+	spawner.progress_ratio = randf()
+	new_mob.global_position = spawner.global_position
+	add_child(new_mob)
+
+func _on_spawn_timer_timeout():
+	spawn_mob()

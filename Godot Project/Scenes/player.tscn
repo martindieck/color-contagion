@@ -87,6 +87,8 @@ height = 16.0
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(6, 6)
+motion_mode = 1
+platform_on_leave = 2
 script = ExtResource("1_tu08t")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
