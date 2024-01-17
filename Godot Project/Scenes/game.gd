@@ -3,9 +3,10 @@ extends Node2D
 #Rule of Thumb: 3500 per 10 sec for regular gun
 
 @onready var tile_counter = get_node("/root/Game/Player/ColorRect/TileCounter")
+@onready var round_timer = get_node("/root/Game/RoundTimer")
 
-var quotas = [50000, 120000, 220000, 400000]
-var round_times = [180, 180, 180, 180]
+var quotas = [500, 1200, 2500]
+var round_times = [18, 20, 180]
 var rounds = {}
 
 func _ready():
@@ -17,9 +18,19 @@ func _ready():
 func _physics_process(delta):
 	tile_counter.text = str(Global.tile_count) + " / " + str(rounds[Global.current_round]["quota"])
 	#tile_counter.text = str(Engine.get_frames_per_second())
+	
+	if Global.tile_count >= rounds[Global.current_round]["quota"]:
+		if Global.current_round + 1 in rounds.keys():
+			print("CONGRATULATIONS. MOVING TO NEXT ROUND")
+			Global.current_round += 1
+			round_timer.set_wait_time(rounds[Global.current_round]["time"])
+			round_timer.start()
+		else:
+			print("YOU HAVE WON")
 
 func _on_round_timer_timeout():
-	print(Global.tile_count)
+	if Global.tile_count < rounds[Global.current_round]["quota"]:
+		print("GAME OVER")
 
 func create_rounds_dict(quotas, round_times):
 	for round in range(quotas.size()):
