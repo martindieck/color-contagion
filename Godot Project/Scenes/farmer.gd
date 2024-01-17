@@ -9,4 +9,8 @@ func _ready():
 func _physics_process(delta):
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * SPEED
+	if sign(direction.x) == -1:
+		$AnimatedSprite2D.flip_h = true
+	if sign(direction.x) == 1:
+		$AnimatedSprite2D.flip_h = false
 	move_and_slide()
