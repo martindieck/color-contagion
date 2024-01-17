@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8pwuug5bvw4u"]
+
+[ext_resource type="Script" path="res://Scenes/farmer.gd" id="1_11qye"]
+[ext_resource type="Texture2D" uid="uid://e14ladb2ytc4" path="res://Sprites/Farmer-Sheet.png" id="1_fc0xk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt2dl"]
+radius = 3.0
+height = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1l6c"]
+atlas = ExtResource("1_fc0xk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtjca"]
+atlas = ExtResource("1_fc0xk")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mhckb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1l6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtjca")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 5.0
+}]
+
+[node name="Farmer" type="CharacterBody2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_11qye")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_vt2dl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_mhckb")
+animation = &"moving"
+frame_progress = 0.842791
