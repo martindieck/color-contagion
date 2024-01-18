@@ -10,16 +10,21 @@ var tile_choice = FastNoiseLite.new()
 
 var tile_dict = {}
 
-func change_tileset(bullet_position):
+func change_tileset(bullet_position, condition):
 	var tile_pos = local_to_map(bullet_position)
 	var x_coord = tile_pos.x
 	var y_coord = tile_pos.y
 	var dict_key = str(Vector2(x_coord,y_coord))
-	if dict_key in tile_dict && tile_dict[dict_key]:
-		pass
+	if dict_key in tile_dict:
+		var current_condition = tile_dict[dict_key]
+		if current_condition != condition && condition:
+			tile_dict[dict_key] = condition
+			Global.tile_count += 1
+		elif current_condition != condition && not condition:
+			tile_dict[dict_key] = condition
+			Global.tile_count -= 1
 	else:
-		tile_dict[dict_key] = true
-		Global.tile_count += 1
+		pass
 
 func _process(delta):
 	generate_chunk(player.position)
@@ -31,12 +36,13 @@ func generate_chunk(player_position):
 			var x_coord = tile_pos.x-width/2 + x
 			var y_coord = tile_pos.y - height/2 + y
 			var dict_key = str(Vector2(x_coord,y_coord))
+			var choice = tile_choice.get_noise_2d(x_coord, y_coord)*10
 			if dict_key in tile_dict:
 				if tile_dict[dict_key] == true:
-					var choice = tile_choice.get_noise_2d(x_coord, y_coord)*10
 					set_cell(0, Vector2i(x_coord, y_coord), 0, Vector2i(round((choice+10)/5), 1))
+				elif tile_dict[dict_key] == false:
+					set_cell(0, Vector2i(x_coord, y_coord), 0, Vector2i(round((choice+10)/5), 0))
 			else:
-				var choice = tile_choice.get_noise_2d(x_coord, y_coord)*10
 				set_cell(0, Vector2i(x_coord, y_coord), 0, Vector2i(round((choice+10)/5), 0))
 				tile_dict[dict_key] = false
 

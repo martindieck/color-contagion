@@ -14,4 +14,4 @@ func _physics_process(delta):
 	if travelled_distance > RANGE:
 		queue_free()
 	
-	tilemap.change_tileset(position)
+	tilemap.change_tileset(position, true)

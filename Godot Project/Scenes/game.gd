@@ -37,11 +37,11 @@ func create_rounds_dict(quotas, round_times):
 	for round in range(quotas.size()):
 		rounds[round + 1] = {"quota": quotas[round], "time": round_times[round]}
 
+func _on_spawn_timer_timeout():
+	spawn_mob()
+
 func spawn_mob():
 	var new_mob = preload("res://Scenes/farmer.tscn").instantiate()
 	spawner.progress_ratio = randf()
 	new_mob.global_position = spawner.global_position
 	add_child(new_mob)
-
-func _on_spawn_timer_timeout():
-	spawn_mob()
