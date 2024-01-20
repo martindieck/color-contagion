@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmofga5mq6sek"]
+[gd_scene load_steps=6 format=3 uid="uid://dmofga5mq6sek"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_7wtfc"]
 [ext_resource type="PackedScene" uid="uid://cgy1it1dunhmf" path="res://Scenes/player.tscn" id="1_pmetn"]
 [ext_resource type="PackedScene" uid="uid://jhqd3iimsw3n" path="res://Scenes/terrain.tscn" id="2_nehjj"]
 [ext_resource type="PackedScene" uid="uid://b6tc4n1l2v43j" path="res://Scenes/spawner.tscn" id="4_qr0un"]
+[ext_resource type="AudioStream" uid="uid://pxy3kvj2bras" path="res://Sounds/Gameplay.mp3" id="5_6lh3g"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_7wtfc")
@@ -60,6 +61,9 @@ vertical_alignment = 1
 
 [node name="Spawner" parent="Player" instance=ExtResource("4_qr0un")]
 scale = Vector2(0.167, 0.167)
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_6lh3g")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]

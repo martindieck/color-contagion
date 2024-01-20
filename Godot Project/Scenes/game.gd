@@ -3,8 +3,9 @@ extends Node2D
 #Rule of Thumb: 3500 per 10 sec for regular gun
 
 @onready var tile_counter = get_node("/root/Game/Player/ColorRect/TileCounter")
-@onready var round_timer = get_node("/root/Game/RoundTimer")
+@onready var round_timer = $RoundTimer
 @onready var spawner = get_node("/root/Game/Player/Spawner/Path2D/SpawnPoint")
+@onready var music = $MusicPlayer
 
 var quotas = [500, 1200, 250000]
 var round_times = [18, 20, 180]
@@ -15,6 +16,7 @@ func _ready():
 	var target = preload("res://Scenes/target.tscn").instantiate()
 	add_child(target)
 	create_rounds_dict(quotas, round_times)
+	music.play()
 
 func _physics_process(delta):
 	tile_counter.text = str(Global.tile_count) + " / " + str(rounds[Global.current_round]["quota"])
