@@ -51,7 +51,7 @@ frame = 1
 frame_progress = 0.230286
 
 [node name="ShootTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.06
 autostart = true
 
 [node name="SpinTimer" type="Timer" parent="."]

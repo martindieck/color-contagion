@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://ds0p514yup8yj"]
+
+[ext_resource type="Script" path="res://Scenes/flamethrower.gd" id="1_2u3u8"]
+[ext_resource type="Texture2D" uid="uid://byx5kyxm47a5s" path="res://Sprites/Flamethrower.png" id="2_ce8xm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74a0h"]
+atlas = ExtResource("2_ce8xm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rm4q4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74a0h")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[node name="Flamethrower" type="Node2D"]
+script = ExtResource("1_2u3u8")
+
+[node name="ShootingPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(6, -3)
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -0.5)
+sprite_frames = SubResource("SpriteFrames_rm4q4")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -1,8 +1,8 @@
 extends Area2D
 
 const SPEED = 800
-const RANGE = 400
-const AREA = 15
+const RANGE = 500
+const AREA = 1
 
 var tile_size = 16
 var travelled_distance = 0
@@ -12,9 +12,11 @@ var travelled_distance = 0
 @onready var tilemap = get_node("/root/Game/Terrain")
 @onready var explosion = $Explosion #USE FOR DETECTING ENEMIES IN EXPLOSION
 @onready var explosion_shape = explosion.shape
+@onready var sprite = $Sprite2D
 
 func _ready():
 	explosion_shape.set_deferred("radius", explosion_radius)
+	sprite.global_rotation = 0
 
 func _physics_process(delta):
 	var direction = Vector2.RIGHT.rotated(rotation)
@@ -22,9 +24,9 @@ func _physics_process(delta):
 	
 	travelled_distance += SPEED * delta
 	if travelled_distance > RANGE:
-		explodes()
+		queue_free()
 		
-	tilemap.change_tileset(position, true)
+	explodes()
 
 func explodes():
 	tilemap.explosion(position, AREA)
@@ -32,8 +34,3 @@ func explodes():
 	for body in bodies:
 		if body.has_method("take_damage"):
 			body.take_damage()
-	queue_free()
-
-func _on_missile_area_body_entered(body):
-	if body != player:
-		explodes()

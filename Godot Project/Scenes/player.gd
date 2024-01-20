@@ -13,8 +13,8 @@ func _physics_process(delta):
 	else:
 		sprite_2d.play("idle")
 	
-	#if Input.is_action_just_pressed("change"):
-		#change_weapon("minigun")
+	if Input.is_action_just_pressed("change"):
+		change_weapon("minigun")
 		
 func change_weapon(weapon):
 	for child in weapon_holder.get_children():
@@ -23,8 +23,12 @@ func change_weapon(weapon):
 		"minigun":
 			const WEAPON = preload("res://Scenes/minigun.tscn")
 			var new_weapon = WEAPON.instantiate()
-			weapon.add_child(new_weapon)
+			weapon_holder.add_child(new_weapon)
 		"cannon":
 			const WEAPON = preload("res://Scenes/cannon.tscn")
 			var new_weapon = WEAPON.instantiate()
-			weapon.add_child(new_weapon)
+			weapon_holder.add_child(new_weapon)
+		"flamethrower":
+			const WEAPON = preload("res://Scenes/flamethrower.tscn")
+			var new_weapon = WEAPON.instantiate()
+			weapon_holder.add_child(new_weapon)
