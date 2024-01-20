@@ -6,7 +6,7 @@ extends Node2D
 @onready var round_timer = get_node("/root/Game/RoundTimer")
 @onready var spawner = get_node("/root/Game/Player/Spawner/Path2D/SpawnPoint")
 
-var quotas = [500, 1200, 2500]
+var quotas = [500, 1200, 250000]
 var round_times = [18, 20, 180]
 var rounds = {}
 

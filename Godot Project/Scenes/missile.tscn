@@ -7,7 +7,7 @@
 radius = 13.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7xf0"]
-size = Vector2(2, 2)
+size = Vector2(10, 2.33333)
 
 [node name="Missile" type="Area2D"]
 top_level = true
@@ -19,11 +19,14 @@ script = ExtResource("1_4nv03")
 [node name="Explosion" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_38tyw")
 
-[node name="MissileBody" type="CollisionShape2D" parent="."]
+[node name="MissileArea" type="Area2D" parent="."]
+
+[node name="MissileBody" type="CollisionShape2D" parent="MissileArea"]
+position = Vector2(-7.94729e-08, 0)
 shape = SubResource("RectangleShape2D_r7xf0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_bxbea")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="MissileArea" to="." method="_on_missile_area_body_entered"]
