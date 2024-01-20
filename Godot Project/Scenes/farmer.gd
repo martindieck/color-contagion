@@ -2,18 +2,31 @@ extends CharacterBody2D
 
 @onready var player = get_node("/root/Game/Player")
 @onready var tilemap = get_node("/root/Game/Terrain")
+@onready var sprite = $AnimatedSprite2D
+@onready var collision = $CollisionShape2D
 
 const SPEED = 250
+var alive = true
 
 func _ready():
-	$AnimatedSprite2D.play("moving")
+	sprite.play("moving")
 
 func _physics_process(delta):
-	var direction = global_position.direction_to(player.global_position)
-	velocity = direction * SPEED
-	if sign(direction.x) == -1:
-		$AnimatedSprite2D.flip_h = true
-	if sign(direction.x) == 1:
-		$AnimatedSprite2D.flip_h = false
-	move_and_slide()
-	tilemap.change_tileset(position, false)
+	if alive:
+		var direction = global_position.direction_to(player.global_position)
+		velocity = direction * SPEED
+		if sign(direction.x) == -1:
+			sprite.flip_h = true
+		if sign(direction.x) == 1:
+			sprite.flip_h = false
+		move_and_slide()
+		tilemap.change_tileset(position, false)
+
+func take_damage():
+	alive = false
+	sprite.play("death")
+	collision.set_deferred("disabled", true)
+
+func _on_animated_sprite_2d_animation_finished():
+	if sprite.animation == "death":
+		queue_free()

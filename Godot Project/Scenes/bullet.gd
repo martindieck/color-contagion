@@ -15,3 +15,7 @@ func _physics_process(delta):
 		queue_free()
 	
 	tilemap.change_tileset(position, true)
+
+func _on_body_entered(body):
+	if body.has_method("take_damage"):
+		body.take_damage()
