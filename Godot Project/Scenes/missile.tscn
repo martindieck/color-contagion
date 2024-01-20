@@ -1,23 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6bquxsn7wq38"]
+[gd_scene load_steps=5 format=3 uid="uid://b6bquxsn7wq38"]
 
-[ext_resource type="Script" path="res://Scenes/bullet.gd" id="1_pl0vy"]
-[ext_resource type="Texture2D" uid="uid://b8wknjdk855hl" path="res://Sprites/Bullet.png" id="2_wvenq"]
+[ext_resource type="Script" path="res://Scenes/missile.gd" id="1_4nv03"]
+[ext_resource type="Texture2D" uid="uid://did8nayyhilx8" path="res://Sprites/Missile.png" id="2_bxbea"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_38tyw"]
+radius = 13.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7xf0"]
 size = Vector2(2, 2)
 
-[node name="Bullet" type="Area2D"]
+[node name="Missile" type="Area2D"]
 top_level = true
 scale = Vector2(6, 6)
 collision_layer = 3
 collision_mask = 3
-script = ExtResource("1_pl0vy")
+script = ExtResource("1_4nv03")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Explosion" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_38tyw")
+
+[node name="MissileBody" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_r7xf0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_wvenq")
+texture = ExtResource("2_bxbea")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -64,10 +64,4 @@ autoplay = "idle"
 wait_time = 0.75
 autostart = true
 
-[node name="SpinTimer" type="Timer" parent="."]
-wait_time = 0.2
-
-[node name="DownTimer" type="Timer" parent="."]
-wait_time = 0.2
-
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

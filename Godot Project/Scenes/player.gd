@@ -16,6 +16,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("change"):
 		for child in weapon.get_children():
 			child.queue_free()
-		const WEAPON = preload("res://Scenes/minigun.tscn")
+		const WEAPON = preload("res://Scenes/cannon.tscn")
 		var new_weapon = WEAPON.instantiate()
 		weapon.add_child(new_weapon)
