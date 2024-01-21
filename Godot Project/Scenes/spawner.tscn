@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6tc4n1l2v43j"]
+[gd_scene load_steps=3 format=3 uid="uid://b6tc4n1l2v43j"]
+
+[ext_resource type="Script" path="res://Scenes/spawner.gd" id="1_mqen5"]
 
 [sub_resource type="Curve2D" id="Curve2D_hlit1"]
 _data = {
@@ -8,6 +10,7 @@ point_count = 5
 
 [node name="Spawner" type="Node2D"]
 position = Vector2(-2, 0)
+script = ExtResource("1_mqen5")
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(-1121, -566)

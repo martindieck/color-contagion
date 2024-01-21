@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmofga5mq6sek"]
+[gd_scene load_steps=7 format=3 uid="uid://dmofga5mq6sek"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_7wtfc"]
 [ext_resource type="PackedScene" uid="uid://cgy1it1dunhmf" path="res://Scenes/player.tscn" id="1_pmetn"]
+[ext_resource type="PackedScene" uid="uid://dvrwosdr16poa" path="res://Scenes/background.tscn" id="2_dpksl"]
 [ext_resource type="PackedScene" uid="uid://jhqd3iimsw3n" path="res://Scenes/terrain.tscn" id="2_nehjj"]
 [ext_resource type="PackedScene" uid="uid://b6tc4n1l2v43j" path="res://Scenes/spawner.tscn" id="4_qr0un"]
 [ext_resource type="AudioStream" uid="uid://pxy3kvj2bras" path="res://Sounds/Gameplay.mp3" id="5_6lh3g"]
@@ -9,15 +10,7 @@
 [node name="Game" type="Node2D"]
 script = ExtResource("1_7wtfc")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -5
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_left = -24.0
-offset_top = -29.0
-offset_right = 1954.0
-offset_bottom = 1105.0
-color = Color(0, 0, 0, 1)
+[node name="Background" parent="." instance=ExtResource("2_dpksl")]
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 0.5
