@@ -10,6 +10,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("movement") and can_dash:
 		can_dash = false
 		player.speed = 1000
+		player.can_take_damage = false
 		cool_down.start()
 		dash_timer.start()
 
@@ -18,3 +19,4 @@ func _on_cool_down_timeout():
 
 func _on_dash_timer_timeout():
 	player.speed = 600
+	player.can_take_damage = true
