@@ -60,7 +60,7 @@ wait_time = 0.2
 [node name="DownTimer" type="Timer" parent="."]
 wait_time = 0.2
 
-[connection signal="timeout" from="ShootTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="SpinTimer" to="." method="_on_spin_timer_timeout"]
 [connection signal="timeout" from="DownTimer" to="." method="_on_down_timer_timeout"]

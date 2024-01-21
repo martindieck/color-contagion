@@ -107,3 +107,5 @@ shape = SubResource("CapsuleShape2D_4t1l4")
 position = Vector2(0, -16)
 
 [node name="Gun" parent="WeaponHolder" instance=ExtResource("4_qaufl")]
+
+[node name="ItemHolder" type="Node2D" parent="."]
