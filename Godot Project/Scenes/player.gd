@@ -44,3 +44,7 @@ func add_item(item):
 			const ITEM = preload("res://Scenes/dash.tscn")
 			var new_item = ITEM.instantiate()
 			item_holder.add_child(new_item)
+		"repulsion":
+			const ITEM = preload("res://Scenes/repulsion.tscn")
+			var new_item = ITEM.instantiate()
+			item_holder.add_child(new_item)

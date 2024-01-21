@@ -9,7 +9,7 @@ var can_dash = true
 func _process(delta):
 	if Input.is_action_just_pressed("movement") and can_dash:
 		can_dash = false
-		player.speed = 2000
+		player.speed = 1000
 		cool_down.start()
 		dash_timer.start()
 
