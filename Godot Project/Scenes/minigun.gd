@@ -32,7 +32,7 @@ func _on_shoot_timer_timeout():
 		shoot()
 
 func _on_spin_timer_timeout():
-	wind_up += 0.067
+	wind_up += 0.15
 	sprite.set_speed_scale(wind_up)
 	sprite.play("shoot")
 	if wind_up >= 1:
@@ -41,7 +41,7 @@ func _on_spin_timer_timeout():
 
 func _on_down_timer_timeout():
 	can_shoot = false
-	wind_up -= 0.067
+	wind_up -= 0.15
 	sprite.set_speed_scale(wind_up)
 	sprite.play("shoot")
 	if wind_up <= 0:
