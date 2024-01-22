@@ -35,8 +35,6 @@ func _physics_process(delta):
 			print("Game Over")
 			breakpoint
 		
-
-		
 func change_weapon(weapon):
 	for child in weapon_holder.get_children():
 		child.queue_free()

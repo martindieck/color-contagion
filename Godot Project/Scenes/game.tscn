@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmofga5mq6sek"]
+[gd_scene load_steps=8 format=3 uid="uid://dmofga5mq6sek"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_7wtfc"]
 [ext_resource type="PackedScene" uid="uid://cgy1it1dunhmf" path="res://Scenes/player.tscn" id="1_pmetn"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://jhqd3iimsw3n" path="res://Scenes/terrain.tscn" id="2_nehjj"]
 [ext_resource type="PackedScene" uid="uid://b6tc4n1l2v43j" path="res://Scenes/spawner.tscn" id="4_qr0un"]
 [ext_resource type="AudioStream" uid="uid://pxy3kvj2bras" path="res://Sounds/Gameplay.mp3" id="5_6lh3g"]
+[ext_resource type="PackedScene" uid="uid://cps4rqnbftu3c" path="res://Scenes/health_ui.tscn" id="7_48u6a"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_7wtfc")
@@ -27,10 +28,10 @@ autostart = true
 position = Vector2(960, 540)
 
 [node name="ColorRect" type="ColorRect" parent="Player"]
-offset_left = -160.0
-offset_top = -90.0
-offset_right = 389.0
-offset_bottom = 24.0
+offset_left = 68.6667
+offset_top = -89.8333
+offset_right = 617.667
+offset_bottom = 24.1667
 scale = Vector2(0.167, 0.167)
 
 [node name="TileCounter" type="Label" parent="Player/ColorRect"]
@@ -54,6 +55,12 @@ vertical_alignment = 1
 
 [node name="Spawner" parent="Player" instance=ExtResource("4_qr0un")]
 scale = Vector2(0.167, 0.167)
+
+[node name="HealthUI" parent="Player" instance=ExtResource("7_48u6a")]
+offset_left = -160.0
+offset_top = -90.0
+offset_right = -120.0
+offset_bottom = -50.0
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_6lh3g")
