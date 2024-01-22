@@ -20,6 +20,8 @@ script = ExtResource("1_4nv03")
 shape = SubResource("CircleShape2D_38tyw")
 
 [node name="MissileArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
 
 [node name="MissileBody" type="CollisionShape2D" parent="MissileArea"]
 position = Vector2(-7.94729e-08, 0)

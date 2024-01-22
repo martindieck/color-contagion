@@ -13,6 +13,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("movement") and can_repel:
 		collisions.set_deferred("disabled", false)
 		can_repel = false
+		player.can_take_damage = false
 		cool_down.start()
 		repel_timer.start()
 		particles.restart()
@@ -23,4 +24,5 @@ func _on_cool_down_timeout():
 
 func _on_repel_timer_timeout():
 	sprite.visible = false
+	player.can_take_damage = true
 	collisions.set_deferred("disabled", true)
