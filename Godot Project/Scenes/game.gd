@@ -2,13 +2,14 @@ extends Node2D
 
 #Rule of Thumb: 3500 per 10 sec for regular gun
 
-@onready var tile_counter = get_node("/root/Game/Player/ColorRect/TileCounter")
+@onready var tile_counter = %TileCounter
 @onready var round_timer = $RoundTimer
 @onready var spawner = get_node("/root/Game/Player/Spawner/Path2D/SpawnPoint")
 @onready var music = $MusicPlayer
+@onready var upgrade_menu = $UI/UpgradeMenu
 
-var quotas = [500, 1200, 250000]
-var round_times = [18, 20, 180]
+var quotas = [1500, 3000, 100000]
+var round_times = [180, 5, 180]
 var rounds = {}
 
 func _ready():
@@ -17,6 +18,8 @@ func _ready():
 	add_child(target)
 	create_rounds_dict(quotas, round_times)
 	music.play()
+	round_timer.set_wait_time(rounds[Global.current_round]["time"])
+	round_timer.start()
 
 func _physics_process(delta):
 	tile_counter.text = str(Global.tile_count) + " / " + str(rounds[Global.current_round]["quota"])
@@ -24,8 +27,8 @@ func _physics_process(delta):
 	
 	if Global.tile_count >= rounds[Global.current_round]["quota"]:
 		if Global.current_round + 1 in rounds.keys():
-			print("CONGRATULATIONS. MOVING TO NEXT ROUND")
 			Global.current_round += 1
+			upgrade_menu.upgrade()
 			round_timer.set_wait_time(rounds[Global.current_round]["time"])
 			round_timer.start()
 		else:

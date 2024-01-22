@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmofga5mq6sek"]
+[gd_scene load_steps=9 format=3 uid="uid://dmofga5mq6sek"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_7wtfc"]
 [ext_resource type="PackedScene" uid="uid://cgy1it1dunhmf" path="res://Scenes/player.tscn" id="1_pmetn"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b6tc4n1l2v43j" path="res://Scenes/spawner.tscn" id="4_qr0un"]
 [ext_resource type="AudioStream" uid="uid://pxy3kvj2bras" path="res://Sounds/Gameplay.mp3" id="5_6lh3g"]
 [ext_resource type="PackedScene" uid="uid://cps4rqnbftu3c" path="res://Scenes/health_ui.tscn" id="7_48u6a"]
+[ext_resource type="PackedScene" uid="uid://cmkjtnk7mkker" path="res://Scenes/upgrade_menu.tscn" id="8_ob18v"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_7wtfc")
@@ -20,50 +21,58 @@ autostart = true
 [node name="RoundTimer" type="Timer" parent="."]
 wait_time = 180.0
 one_shot = true
-autostart = true
 
 [node name="Terrain" parent="." instance=ExtResource("2_nehjj")]
 
 [node name="Player" parent="." instance=ExtResource("1_pmetn")]
 position = Vector2(960, 540)
 
-[node name="ColorRect" type="ColorRect" parent="Player"]
-offset_left = 68.6667
-offset_top = -89.8333
-offset_right = 617.667
-offset_bottom = 24.1667
-scale = Vector2(0.167, 0.167)
-
-[node name="TileCounter" type="Label" parent="Player/ColorRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -27.5
-offset_right = 32.0
-offset_bottom = 27.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-text = "Counter"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Spawner" parent="Player" instance=ExtResource("4_qr0un")]
 scale = Vector2(0.167, 0.167)
 
-[node name="HealthUI" parent="Player" instance=ExtResource("7_48u6a")]
-offset_left = -160.0
-offset_top = -90.0
-offset_right = -120.0
-offset_bottom = -50.0
-
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("5_6lh3g")
+
+[node name="UI" type="CanvasLayer" parent="."]
+scale = Vector2(6, 6)
+transform = Transform2D(6, 0, 0, 6, 0, 0)
+
+[node name="HealthUI" parent="UI" instance=ExtResource("7_48u6a")]
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 279.667
+offset_right = 319.667
+offset_bottom = 40.0
+
+[node name="TileCounter" type="Label" parent="UI/Control"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -61.0
+offset_bottom = 23.0
+grow_horizontal = 0
+horizontal_alignment = 2
+
+[node name="UpgradeMenu" parent="UI" instance=ExtResource("8_ob18v")]
+visible = false
+anchors_preset = -1
+anchor_left = 0.083
+anchor_top = 0.083
+anchor_right = 0.083
+anchor_bottom = 0.083
+offset_left = -60.36
+offset_top = -49.64
+offset_right = 57.64
+offset_bottom = 51.3603
+size_flags_horizontal = 4
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
