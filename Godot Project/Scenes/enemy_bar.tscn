@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bvk5qc3k0wniv"]
 
-[ext_resource type="Texture2D" path="res://Sprites/GrayBar.png" id="1_i83t8"]
+[ext_resource type="Texture2D" uid="uid://ci35c0h7fh5q5" path="res://Sprites/GreyBar.png" id="1_i83t8"]
 [ext_resource type="Texture2D" uid="uid://dkf8fqe557ca2" path="res://Sprites/PurpleBar.png" id="2_vb7uh"]
 [ext_resource type="Script" path="res://Scenes/enemy_bar.gd" id="3_ls800"]
 

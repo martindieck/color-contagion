@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmofga5mq6sek"]
+[gd_scene load_steps=13 format=3 uid="uid://dmofga5mq6sek"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_7wtfc"]
 [ext_resource type="PackedScene" uid="uid://cgy1it1dunhmf" path="res://Scenes/player.tscn" id="1_pmetn"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://cmkjtnk7mkker" path="res://Scenes/upgrade_menu.tscn" id="8_ob18v"]
 [ext_resource type="PackedScene" uid="uid://fwhv05rqg603" path="res://Scenes/pause_menu.tscn" id="9_2h1kw"]
 [ext_resource type="PackedScene" uid="uid://bvk5qc3k0wniv" path="res://Scenes/enemy_bar.tscn" id="9_kd637"]
-[ext_resource type="Texture2D" uid="uid://ci35c0h7fh5q5" path="res://Sprites/GreyBar.png" id="10_8oioc"]
 [ext_resource type="FontFile" uid="uid://djxj8mlg0fui6" path="res://Fonts/VCR_OSD_MONO.ttf" id="10_j1j0u"]
 [ext_resource type="PackedScene" uid="uid://6g58v0elx4ri" path="res://Scenes/weapon_bar.tscn" id="11_ssk22"]
 
@@ -65,7 +64,6 @@ offset_top = -353.0
 offset_right = 75.0
 offset_bottom = -321.0
 scale = Vector2(3.69476, 9.61387)
-texture_under = ExtResource("10_8oioc")
 
 [node name="WeaponBar" parent="UI" instance=ExtResource("11_ssk22")]
 unique_name_in_owner = true
