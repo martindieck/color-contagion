@@ -1,6 +1,7 @@
 extends Node2D
 
 #Rule of Thumb: 3500 per 10 sec for regular gun
+const SPAWN_TIME = 0.5
 
 @onready var tile_counter = %TileCounter
 @onready var enemy_bar = %EnemyBar
@@ -35,6 +36,7 @@ func _physics_process(delta):
 		if Global.current_round + 1 in rounds.keys():
 			Global.current_round += 1
 			spawn_increase = floorf(0.45 / rounds[Global.current_round]["time"])
+			spawn_timer.wait_time = SPAWN_TIME
 			upgrade_menu.upgrade()
 			round_timer.set_wait_time(rounds[Global.current_round]["time"])
 			round_timer.start()
