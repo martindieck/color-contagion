@@ -3,6 +3,7 @@ extends Node2D
 #Rule of Thumb: 3500 per 10 sec for regular gun
 
 @onready var tile_counter = %TileCounter
+@onready var enemy_bar = %EnemyBar
 @onready var round_timer = $RoundTimer
 @onready var spawner = get_node("/root/Game/Player/Spawner/Path2D/SpawnPoint")
 @onready var music = $MusicPlayer
@@ -23,6 +24,7 @@ func _ready():
 
 func _physics_process(delta):
 	tile_counter.text = str(Global.tile_count) + " / " + str(rounds[Global.current_round]["quota"])
+	enemy_bar.value = Global.enemies_killed
 	#tile_counter.text = str(Engine.get_frames_per_second())
 	
 	if Global.tile_count >= rounds[Global.current_round]["quota"]:

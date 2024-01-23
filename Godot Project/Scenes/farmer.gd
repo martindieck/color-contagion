@@ -24,6 +24,7 @@ func _physics_process(delta):
 
 func take_damage():
 	alive = false
+	Global.enemies_killed += 1
 	sprite.play("death")
 	collision.set_deferred("disabled", true)
 

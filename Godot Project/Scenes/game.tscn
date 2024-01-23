@@ -42,7 +42,7 @@ transform = Transform2D(6, 0, 0, 6, 0, 0)
 offset_right = 0.0
 offset_bottom = 0.0
 
-[node name="Control" type="Control" parent="UI"]
+[node name="Counter" type="Control" parent="UI"]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
@@ -50,7 +50,7 @@ offset_left = 279.667
 offset_right = 319.667
 offset_bottom = 40.0
 
-[node name="TileCounter" type="Label" parent="UI/Control"]
+[node name="TileCounter" type="Label" parent="UI/Counter"]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 1
@@ -74,6 +74,30 @@ offset_top = -49.64
 offset_right = 57.64
 offset_bottom = 51.3603
 size_flags_horizontal = 4
+
+[node name="EnemyCounter" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 25.0
+offset_top = 10.0
+offset_right = 303.0
+offset_bottom = 172.0
+
+[node name="EnemyBar" type="ProgressBar" parent="UI/EnemyCounter"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -55.1667
+offset_right = 1.0
+offset_bottom = -1.16666
+grow_vertical = 0
+step = 1.0
+value = 79.0
+fill_mode = 3
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]

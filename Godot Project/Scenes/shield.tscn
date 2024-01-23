@@ -55,7 +55,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_mhlud")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.0958758
+frame_progress = 0.416416
 
 [node name="ShieldArea" type="Area2D" parent="."]
 collision_layer = 4
