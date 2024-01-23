@@ -117,7 +117,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_q7ud0")
 animation = &"movement"
 autoplay = "movement"
-frame_progress = 0.774849
+frame_progress = 0.0236729
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

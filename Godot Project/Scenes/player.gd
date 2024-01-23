@@ -76,3 +76,7 @@ func _on_sprite_timer_timeout():
 	if sprite_flash >= 8:
 		sprite_flash = 0
 		sprite_timer.stop()
+
+func damage_flash():
+	damage_timer.start()
+	sprite_timer.start()

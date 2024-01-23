@@ -4,7 +4,7 @@ extends Node2D
 @onready var cool_down = $CoolDown
 @onready var immunity = $Immunity
 @onready var sprite = $Sprite2D
-@onready var collisions = $CharacterBody2D/CollisionShape2D
+@onready var particles = $GPUParticles2D
 
 var can_repel = true
 
@@ -16,9 +16,11 @@ func _on_cool_down_timeout():
 	sprite.show()
 
 func _on_shield_area_body_entered(body):
+	player.damage_flash()
 	cool_down.start()
 	immunity.start()
 	sprite.hide()
+	particles.restart()
 
 func _on_immunity_timeout():
 	player.can_take_damage = true

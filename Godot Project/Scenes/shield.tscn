@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://biw4ue46eoaas"]
+[gd_scene load_steps=10 format=3 uid="uid://biw4ue46eoaas"]
 
 [ext_resource type="Script" path="res://Scenes/shield.gd" id="1_8xmpv"]
 [ext_resource type="Texture2D" uid="uid://bxs7ewqjg2d65" path="res://Sprites/Shield-Sheet.png" id="2_24jcj"]
+[ext_resource type="Texture2D" uid="uid://bmgppf3llf8i" path="res://Sprites/purpleParticle.png" id="3_oe45p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u2ut4"]
 atlas = ExtResource("2_24jcj")
@@ -37,10 +38,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q713v"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_min = 10.0
+scale_max = 10.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_yv7j5"]
 radius = 8.0
 
 [node name="Shield" type="Node2D"]
+position = Vector2(8, 3)
+scale = Vector2(0.7, 0.7)
 script = ExtResource("1_8xmpv")
 
 [node name="Immunity" type="Timer" parent="."]
@@ -55,11 +67,21 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_mhlud")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.416416
+frame_progress = 0.366947
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture_filter = 1
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_q713v")
+texture = ExtResource("3_oe45p")
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.75
 
 [node name="ShieldArea" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldArea"]
 shape = SubResource("CircleShape2D_yv7j5")
