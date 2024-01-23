@@ -5,6 +5,7 @@ const SPAWN_TIME = 0.5
 
 @onready var tile_counter = %TileCounter
 @onready var enemy_bar = %EnemyBar
+@onready var weapon_bar = %WeaponBar
 @onready var round_timer = $RoundTimer
 @onready var change_timer = $ChangeTimer
 @onready var spawn_timer = $SpawnTimer
@@ -30,6 +31,7 @@ func _ready():
 func _physics_process(delta):
 	tile_counter.text = str(Global.tile_count) + " / " + str(rounds[Global.current_round]["quota"])
 	enemy_bar.value = Global.enemies_killed
+	weapon_bar.value = Global.near_misses
 	#tile_counter.text = str(Engine.get_frames_per_second())
 	
 	if Global.tile_count >= rounds[Global.current_round]["quota"]:

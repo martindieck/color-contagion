@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbdlqp87f7b8d"
-path="res://.godot/imported/GrayBar.png-052a8843d3ad6a4f028eeefb5c36cd35.ctex"
+uid="uid://dn5g4kuhtgh04"
+path="res://.godot/imported/GreenBar.png-0610b07f6c36b0558c94b21d9d90dee2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/GrayBar.png"
-dest_files=["res://.godot/imported/GrayBar.png-052a8843d3ad6a4f028eeefb5c36cd35.ctex"]
+source_file="res://Sprites/GreenBar.png"
+dest_files=["res://.godot/imported/GreenBar.png-0610b07f6c36b0558c94b21d9d90dee2.ctex"]
 
 [params]
 
