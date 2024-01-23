@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvk5qc3k0wniv"]
+
+[ext_resource type="Texture2D" uid="uid://dbdlqp87f7b8d" path="res://Sprites/GrayBar.png" id="1_i83t8"]
+[ext_resource type="Texture2D" uid="uid://dkf8fqe557ca2" path="res://Sprites/PurpleBar.png" id="2_vb7uh"]
+[ext_resource type="Script" path="res://Scenes/enemy_bar.gd" id="3_ls800"]
+
+[node name="EnemyBar" type="TextureProgressBar"]
+texture_filter = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 61.0
+offset_top = -248.0
+offset_right = 78.0
+offset_bottom = -217.0
+grow_vertical = 0
+scale = Vector2(6, 13.52)
+max_value = 10.0
+fill_mode = 3
+texture_under = ExtResource("1_i83t8")
+texture_progress = ExtResource("2_vb7uh")
+script = ExtResource("3_ls800")

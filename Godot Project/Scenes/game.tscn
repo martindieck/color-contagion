@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmofga5mq6sek"]
+[gd_scene load_steps=12 format=3 uid="uid://dmofga5mq6sek"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_7wtfc"]
 [ext_resource type="PackedScene" uid="uid://cgy1it1dunhmf" path="res://Scenes/player.tscn" id="1_pmetn"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cps4rqnbftu3c" path="res://Scenes/health_ui.tscn" id="7_48u6a"]
 [ext_resource type="PackedScene" uid="uid://cmkjtnk7mkker" path="res://Scenes/upgrade_menu.tscn" id="8_ob18v"]
 [ext_resource type="PackedScene" uid="uid://fwhv05rqg603" path="res://Scenes/pause_menu.tscn" id="9_2h1kw"]
+[ext_resource type="PackedScene" uid="uid://bvk5qc3k0wniv" path="res://Scenes/enemy_bar.tscn" id="9_kd637"]
 [ext_resource type="FontFile" uid="uid://djxj8mlg0fui6" path="res://Fonts/VCR_OSD_MONO.ttf" id="10_j1j0u"]
 
 [node name="Game" type="Node2D"]
@@ -49,38 +50,14 @@ scale = Vector2(6, 6)
 
 [node name="UpgradeMenu" parent="UI" instance=ExtResource("8_ob18v")]
 visible = false
-anchors_preset = -1
-anchor_left = 0.083
-anchor_top = 0.083
-anchor_right = 0.083
-anchor_bottom = 0.083
-offset_left = -60.36
-offset_top = -49.64
-offset_right = 57.64
-offset_bottom = 51.3603
+offset_left = -59.0
+offset_top = -50.5002
+offset_right = 59.0
+offset_bottom = 50.5002
 size_flags_horizontal = 4
 
-[node name="EnemyBar" type="ProgressBar" parent="UI"]
+[node name="EnemyBar" parent="UI" instance=ExtResource("9_kd637")]
 unique_name_in_owner = true
-texture_filter = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 61.0
-offset_top = -248.0
-offset_right = 78.0
-offset_bottom = -217.0
-grow_vertical = 0
-scale = Vector2(6, 6)
-theme_override_fonts/font = ExtResource("10_j1j0u")
-theme_override_font_sizes/font_size = 30
-step = 1.0
-fill_mode = 3
-show_percentage = false
-
-[node name="PauseMenu" parent="UI" instance=ExtResource("9_2h1kw")]
-process_mode = 3
-visible = false
 
 [node name="TileCounter" type="Label" parent="UI"]
 unique_name_in_owner = true
@@ -96,6 +73,10 @@ grow_horizontal = 0
 theme_override_fonts/font = ExtResource("10_j1j0u")
 theme_override_font_sizes/font_size = 100
 horizontal_alignment = 2
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("9_2h1kw")]
+process_mode = 3
+visible = false
 
 [connection signal="timeout" from="ChangeTimer" to="." method="_on_change_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
