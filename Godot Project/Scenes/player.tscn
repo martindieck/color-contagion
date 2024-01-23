@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cgy1it1dunhmf"]
+[gd_scene load_steps=18 format=3 uid="uid://cgy1it1dunhmf"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_tu08t"]
 [ext_resource type="Texture2D" uid="uid://dhqnudti72myx" path="res://Sprites/Player_Idle-Sheet-Green.png" id="2_eu3xy"]
@@ -12,6 +12,9 @@ height = 16.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hmews"]
 radius = 6.66667
 height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ijfsb"]
+radius = 19.3341
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7uo2q"]
 atlas = ExtResource("2_eu3xy")
@@ -112,12 +115,19 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CapsuleShape2D_hmews")
 
+[node name="NearMiss" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NearMiss"]
+shape = SubResource("CircleShape2D_ijfsb")
+
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_q7ud0")
 animation = &"movement"
 autoplay = "movement"
-frame_progress = 0.578273
+frame_progress = 0.59275
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -130,3 +140,4 @@ position = Vector2(0, -16)
 
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="SpriteTimer" to="." method="_on_sprite_timer_timeout"]
+[connection signal="body_entered" from="NearMiss" to="." method="_on_near_miss_body_entered"]

@@ -51,7 +51,6 @@ scale_max = 10.0
 radius = 8.0
 
 [node name="Shield" type="Node2D"]
-position = Vector2(8, 3)
 scale = Vector2(0.7, 0.7)
 script = ExtResource("1_8xmpv")
 
@@ -64,10 +63,11 @@ one_shot = true
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(8, 3)
 sprite_frames = SubResource("SpriteFrames_mhlud")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.0298203
+frame_progress = 0.351963
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 texture_filter = 1

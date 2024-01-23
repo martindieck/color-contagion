@@ -10,6 +10,7 @@ extends CharacterBody2D
 var health = 3
 var sprite_flash = 0
 var can_take_damage = true
+var has_shield = false
 var speed = 600
 
 func _physics_process(delta):
@@ -23,7 +24,7 @@ func _physics_process(delta):
 		sprite_2d.play("idle")
 	
 	if Input.is_action_just_pressed("change"):
-		add_item("shield")
+		add_item("repulsion")
 		
 	var overlapping_mobs = hurt_box.get_overlapping_bodies()
 	if overlapping_mobs.size() > 0 and can_take_damage:
@@ -80,3 +81,8 @@ func _on_sprite_timer_timeout():
 func damage_flash():
 	damage_timer.start()
 	sprite_timer.start()
+
+func _on_near_miss_body_entered(body):
+	if can_take_damage or has_shield:
+		Global.near_misses += 1
+		print(Global.near_misses)
