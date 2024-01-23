@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://biw4ue46eoaas"]
+
+[ext_resource type="Script" path="res://Scenes/shield.gd" id="1_8xmpv"]
+[ext_resource type="Texture2D" uid="uid://bxs7ewqjg2d65" path="res://Sprites/Shield-Sheet.png" id="2_24jcj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2ut4"]
+atlas = ExtResource("2_24jcj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vtvw"]
+atlas = ExtResource("2_24jcj")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fw0uu"]
+atlas = ExtResource("2_24jcj")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mhlud"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2ut4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vtvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fw0uu")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yv7j5"]
+radius = 8.0
+
+[node name="Shield" type="Node2D"]
+script = ExtResource("1_8xmpv")
+
+[node name="Immunity" type="Timer" parent="."]
+one_shot = true
+
+[node name="CoolDown" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_mhlud")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0958758
+
+[node name="ShieldArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldArea"]
+shape = SubResource("CircleShape2D_yv7j5")
+
+[connection signal="timeout" from="Immunity" to="." method="_on_immunity_timeout"]
+[connection signal="timeout" from="CoolDown" to="." method="_on_cool_down_timeout"]
+[connection signal="body_entered" from="ShieldArea" to="." method="_on_shield_area_body_entered"]

@@ -43,6 +43,7 @@ offset_right = 0.0
 offset_bottom = 0.0
 
 [node name="Control" type="Control" parent="UI"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
 offset_left = 279.667

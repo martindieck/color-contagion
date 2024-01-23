@@ -23,7 +23,7 @@ func _physics_process(delta):
 		sprite_2d.play("idle")
 	
 	if Input.is_action_just_pressed("change"):
-		add_item("dash")
+		add_item("shield")
 		
 	var overlapping_mobs = hurt_box.get_overlapping_bodies()
 	if overlapping_mobs.size() > 0 and can_take_damage:
@@ -60,6 +60,10 @@ func add_item(item):
 			item_holder.add_child(new_item)
 		"repulsion":
 			const ITEM = preload("res://Scenes/repulsion.tscn")
+			var new_item = ITEM.instantiate()
+			item_holder.add_child(new_item)
+		"shield":
+			const ITEM = preload("res://Scenes/shield.tscn")
 			var new_item = ITEM.instantiate()
 			item_holder.add_child(new_item)
 
