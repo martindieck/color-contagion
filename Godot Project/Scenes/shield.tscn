@@ -67,7 +67,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_mhlud")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.366947
+frame_progress = 0.0298203
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 texture_filter = 1

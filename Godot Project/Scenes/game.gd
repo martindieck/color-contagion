@@ -5,13 +5,16 @@ extends Node2D
 @onready var tile_counter = %TileCounter
 @onready var enemy_bar = %EnemyBar
 @onready var round_timer = $RoundTimer
+@onready var change_timer = $ChangeTimer
+@onready var spawn_timer = $SpawnTimer
 @onready var spawner = get_node("/root/Game/Player/Spawner/Path2D/SpawnPoint")
 @onready var music = $MusicPlayer
 @onready var upgrade_menu = $UI/UpgradeMenu
 
-var quotas = [1500, 3000, 100000]
-var round_times = [180, 5, 180]
+var quotas = [15000, 30000, 100000]
+var round_times = [180, 180, 180]
 var rounds = {}
+var spawn_increase = 0
 
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -21,6 +24,7 @@ func _ready():
 	music.play()
 	round_timer.set_wait_time(rounds[Global.current_round]["time"])
 	round_timer.start()
+	spawn_increase = snappedf(0.45 / rounds[Global.current_round]["time"], 0.001)
 
 func _physics_process(delta):
 	tile_counter.text = str(Global.tile_count) + " / " + str(rounds[Global.current_round]["quota"])
@@ -30,6 +34,7 @@ func _physics_process(delta):
 	if Global.tile_count >= rounds[Global.current_round]["quota"]:
 		if Global.current_round + 1 in rounds.keys():
 			Global.current_round += 1
+			spawn_increase = floorf(0.45 / rounds[Global.current_round]["time"])
 			upgrade_menu.upgrade()
 			round_timer.set_wait_time(rounds[Global.current_round]["time"])
 			round_timer.start()
@@ -52,3 +57,7 @@ func spawn_mob():
 	spawner.progress_ratio = randf()
 	new_mob.global_position = spawner.global_position
 	add_child(new_mob)
+
+func _on_change_timer_timeout():
+	spawn_timer.wait_time -= spawn_increase
+	spawn_timer.wait_time = maxf(0.05, spawn_timer.wait_time)

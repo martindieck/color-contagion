@@ -14,6 +14,9 @@ script = ExtResource("1_7wtfc")
 
 [node name="Background" parent="." instance=ExtResource("2_dpksl")]
 
+[node name="ChangeTimer" type="Timer" parent="."]
+autostart = true
+
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
@@ -98,5 +101,6 @@ step = 1.0
 value = 79.0
 fill_mode = 3
 
+[connection signal="timeout" from="ChangeTimer" to="." method="_on_change_timer_timeout"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
