@@ -5,6 +5,10 @@ var choice2 : String
 var choice3 : String
 var type : String
 
+@onready var choice1_but = %Choice1
+@onready var choice2_but = %Choice2
+@onready var choice3_but = %Choice3
+
 @onready var player = get_node("/root/Game/Player")
 
 func upgrade():
@@ -13,19 +17,22 @@ func upgrade():
 	match Global.current_round:
 		2:
 			type = "weapon"
-			$VBoxContainer/Choice1.text = "Minigun"
+			choice1_but.text = "Minigun"
+			choice1_but.icon = load("res://Sprites/minigun.png")
 			choice1 = "minigun"
-			$VBoxContainer/Choice2.text = "Cannon"
+			choice2_but.text = "Cannon"
+			choice2_but.icon = load("res://Sprites/Cannon-Sheet.png")
 			choice2 = "cannon"
-			$VBoxContainer/Choice3.text = "Flamethrower"
+			choice3_but.text = "Flamethrower"
+			choice3_but.icon = load("res://Sprites/Flamethrower.png")
 			choice3 = "flamethrower"
 		3:
 			type = "item"
-			$VBoxContainer/Choice1.text = "Dash"
+			choice1_but.text = "Dash"
 			choice1 = "dash"
-			$VBoxContainer/Choice2.text = "Repulsion"
+			choice2_but.text = "Repulsion"
 			choice2 = "repulsion"
-			$VBoxContainer/Choice3.text = "Shield"
+			choice3_but.text = "Shield"
 			choice3 = "shield"
 
 func _on_choice_1_pressed():
