@@ -4,9 +4,9 @@ extends Node2D
 const SPAWN_TIME = 0.5
 
 @onready var tile_counter = %TileCounter
-@onready var round_timer = $RoundTimer
-@onready var change_timer = $ChangeTimer
-@onready var spawn_timer = $SpawnTimer
+@onready var round_timer = $Timers/RoundTimer
+@onready var change_timer = $Timers/ChangeTimer
+@onready var spawn_timer = $Timers/SpawnTimer
 @onready var spawner = get_node("/root/Game/Player/Spawner/Path2D/SpawnPoint")
 @onready var music = $MusicPlayer
 @onready var upgrade_menu = $UI/UpgradeMenu

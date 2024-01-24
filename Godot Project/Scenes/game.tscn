@@ -19,14 +19,16 @@ script = ExtResource("1_7wtfc")
 [node name="Background" parent="." instance=ExtResource("2_dpksl")]
 position = Vector2(-7, -36)
 
-[node name="ChangeTimer" type="Timer" parent="."]
+[node name="Timers" type="Node" parent="."]
+
+[node name="ChangeTimer" type="Timer" parent="Timers"]
 autostart = true
 
-[node name="SpawnTimer" type="Timer" parent="."]
+[node name="SpawnTimer" type="Timer" parent="Timers"]
 wait_time = 0.5
 autostart = true
 
-[node name="RoundTimer" type="Timer" parent="."]
+[node name="RoundTimer" type="Timer" parent="Timers"]
 wait_time = 180.0
 one_shot = true
 
@@ -102,6 +104,6 @@ horizontal_alignment = 2
 process_mode = 3
 visible = false
 
-[connection signal="timeout" from="ChangeTimer" to="." method="_on_change_timer_timeout"]
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
-[connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
+[connection signal="timeout" from="Timers/ChangeTimer" to="." method="_on_change_timer_timeout"]
+[connection signal="timeout" from="Timers/SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="Timers/RoundTimer" to="." method="_on_round_timer_timeout"]
