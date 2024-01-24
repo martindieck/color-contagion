@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://cmkjtnk7mkker" path="res://Scenes/upgrade_menu.tscn" id="8_ob18v"]
 [ext_resource type="PackedScene" uid="uid://fwhv05rqg603" path="res://Scenes/pause_menu.tscn" id="9_2h1kw"]
 [ext_resource type="PackedScene" uid="uid://bvk5qc3k0wniv" path="res://Scenes/enemy_bar.tscn" id="9_kd637"]
+[ext_resource type="PackedScene" uid="uid://ptkme37m5hs1" path="res://Scenes/miss_bar.tscn" id="10_2f4o8"]
 [ext_resource type="FontFile" uid="uid://djxj8mlg0fui6" path="res://Fonts/VCR_OSD_MONO.ttf" id="10_j1j0u"]
-[ext_resource type="PackedScene" uid="uid://6g58v0elx4ri" path="res://Scenes/weapon_bar.tscn" id="11_ssk22"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_7wtfc")
@@ -58,25 +58,30 @@ offset_right = 59.0
 offset_bottom = 50.5002
 size_flags_horizontal = 4
 
-[node name="EnemyBar" parent="UI" instance=ExtResource("9_kd637")]
-unique_name_in_owner = true
-offset_left = 58.0
-offset_top = -353.0
-offset_right = 75.0
-offset_bottom = -321.0
-scale = Vector2(3.69476, 9.61387)
+[node name="EnemyCounter" parent="UI" instance=ExtResource("9_kd637")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = -173.0
+offset_right = 60.0
+offset_bottom = -173.0
+grow_vertical = 0
+scale = Vector2(4, 4)
 
-[node name="WeaponBar" parent="UI" instance=ExtResource("11_ssk22")]
-unique_name_in_owner = true
+[node name="MissCounter" parent="UI" instance=ExtResource("10_2f4o8")]
 anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = -117.0
-offset_top = -353.0
-offset_right = -100.0
-offset_bottom = -321.0
+anchor_bottom = 1.0
+offset_left = -119.86
+offset_top = -173.0
+offset_right = -119.86
+offset_bottom = -173.0
 grow_horizontal = 0
-scale = Vector2(3.695, 9.614)
+grow_vertical = 0
+scale = Vector2(4, 4)
 
 [node name="TileCounter" type="Label" parent="UI"]
 unique_name_in_owner = true
@@ -90,7 +95,7 @@ offset_right = -43.0
 offset_bottom = 116.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("10_j1j0u")
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 70
 horizontal_alignment = 2
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("9_2h1kw")]

@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://ptkme37m5hs1"]
+
+[ext_resource type="Script" path="res://Scenes/miss_bar.gd" id="1_tvjqq"]
+[ext_resource type="Texture2D" uid="uid://ci35c0h7fh5q5" path="res://Sprites/GreyBar.png" id="2_dys4q"]
+[ext_resource type="Texture2D" uid="uid://dn5g4kuhtgh04" path="res://Sprites/GreenBar.png" id="3_8838b"]
+[ext_resource type="Texture2D" uid="uid://binw57f3jncqs" path="res://Sprites/Power.png" id="4_bjgaa"]
+
+[node name="MissCounter" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_tvjqq")
+
+[node name="MissBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 17.0
+offset_bottom = -8.0
+grow_vertical = 0
+scale = Vector2(1, 2.253)
+max_value = 10.0
+fill_mode = 3
+texture_under = ExtResource("2_dys4q")
+texture_progress = ExtResource("3_8838b")
+
+[node name="Power" type="TextureRect" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = -1.0
+offset_top = -63.0
+offset_right = 17.0
+offset_bottom = -45.0
+texture = ExtResource("4_bjgaa")

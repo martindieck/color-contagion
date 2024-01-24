@@ -23,8 +23,8 @@ func _physics_process(delta):
 	else:
 		sprite_2d.play("idle")
 	
-	if Input.is_action_just_pressed("change"):
-		add_item("repulsion")
+	#if Input.is_action_just_pressed("change"):
+		#add_item("repulsion")
 		
 	var overlapping_mobs = hurt_box.get_overlapping_bodies()
 	if overlapping_mobs.size() > 0 and can_take_damage:
