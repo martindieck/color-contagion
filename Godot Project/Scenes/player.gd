@@ -90,7 +90,6 @@ func damage_flash():
 func _on_near_miss_body_entered(body):
 	if can_take_damage or has_shield:
 		Global.near_misses += 1
-		print(Global.near_misses)
 		
 func power_up():
 	power_timer.start()

@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 const SPEED = 250
 var alive = true
+var health = 1
 
 func _ready():
 	sprite.play("moving")
@@ -23,11 +24,16 @@ func _physics_process(delta):
 		tilemap.change_tileset(position, false)
 
 func take_damage():
-	alive = false
-	Global.enemies_killed += 1
-	sprite.play("death")
-	collision.set_deferred("disabled", true)
+	health -= 1
+	if health <= 0:
+		death()
 
 func _on_animated_sprite_2d_animation_finished():
 	if sprite.animation == "death":
 		queue_free()
+
+func death():
+	alive = false
+	Global.enemies_killed += 1
+	sprite.play("death")
+	collision.set_deferred("disabled", true)

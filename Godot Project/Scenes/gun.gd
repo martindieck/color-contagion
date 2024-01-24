@@ -8,9 +8,6 @@ func _physics_process(delta):
 	var angle = atan2(direction.y * reverse, direction.x * reverse)
 	rotation = angle
 	
-	if Input.is_action_just_pressed("shoot"):
-		shoot()
-	
 func shoot():
 	const BULLET = preload("res://Scenes/bullet.tscn")
 	var new_bullet = BULLET.instantiate()

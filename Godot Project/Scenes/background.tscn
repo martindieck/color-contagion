@@ -9,8 +9,8 @@ script = ExtResource("1_x6d81")
 layer = -5
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_left = -24.0
-offset_top = -29.0
-offset_right = 1954.0
-offset_bottom = 1105.0
+offset_left = -1339.0
+offset_top = -858.0
+offset_right = 3298.0
+offset_bottom = 2057.0
 color = Color(0, 0, 0, 1)

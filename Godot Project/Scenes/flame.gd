@@ -34,3 +34,4 @@ func explodes():
 	for body in bodies:
 		if body.has_method("take_damage"):
 			body.take_damage()
+			queue_free()
