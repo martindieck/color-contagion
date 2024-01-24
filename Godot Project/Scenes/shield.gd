@@ -7,9 +7,12 @@ extends Node2D
 @onready var particles = $GPUParticles2D
 @onready var tilemap = get_node("/root/Game/Terrain")
 
+signal item_used
+
 func _ready():
 	player.can_take_damage = false
 	player.has_shield = true
+	cool_down.wait_time = Global.shield_cooldown
 	
 func _physics_process(delta):
 	if player.has_shield:
@@ -21,6 +24,7 @@ func _on_cool_down_timeout():
 	sprite.show()
 
 func _on_shield_area_body_entered(body):
+	item_used.emit()
 	player.damage_flash()
 	player.has_shield = false
 	cool_down.start()

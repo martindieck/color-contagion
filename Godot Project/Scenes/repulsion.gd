@@ -9,8 +9,14 @@ extends Node2D
 
 var can_repel = true
 
+signal item_used
+
+func _ready():
+	cool_down.wait_time = Global.repulsion_cooldown
+
 func _process(delta):
 	if Input.is_action_just_pressed("movement") and can_repel:
+		item_used.emit()
 		collisions.set_deferred("disabled", false)
 		can_repel = false
 		player.can_take_damage = false

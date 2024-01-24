@@ -11,6 +11,7 @@ const SPAWN_TIME = 0.5
 @onready var spawner = get_node("/root/Game/Player/Spawner/Path2D/SpawnPoint")
 @onready var music = $MusicPlayer
 @onready var upgrade_menu = $UI/UpgradeMenu
+@onready var current_item = $UI/CurrentItem
 
 var quotas = [1500, 3000, 100000]
 var round_times = [180, 180, 180]
@@ -65,17 +66,11 @@ func _on_change_timer_timeout():
 	spawn_timer.wait_time = maxf(0.05, spawn_timer.wait_time)
 
 func _on_player_new_item(item):
-	pass
-	#match item:
-		#"dash":
-			#const ITEM = preload("res://Scenes/dash.tscn")
-			#var new_item = ITEM.instantiate()
-			#item_holder.add_child(new_item)
-		#"repulsion":
-			#const ITEM = preload("res://Scenes/repulsion.tscn")
-			#var new_item = ITEM.instantiate()
-			#item_holder.add_child(new_item)
-		#"shield":
-			#const ITEM = preload("res://Scenes/shield.tscn")
-			#var new_item = ITEM.instantiate()
-			#item_holder.add_child(new_item)
+	current_item.new_item(item)
+	current_item.show()
+	var item_holder = get_node("/root/Game/Player/ItemHolder")
+	var actual_item = item_holder.get_children()[0]
+	actual_item.item_used.connect(_on_item_used)
+
+func _on_item_used():
+	current_item.item_used()	

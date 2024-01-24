@@ -6,8 +6,14 @@ extends Node2D
 
 var can_dash = true
 
+signal item_used
+
+func _ready():
+	cool_down.wait_time = Global.dash_cooldown
+
 func _process(delta):
 	if Input.is_action_just_pressed("movement") and can_dash:
+		item_used.emit()
 		can_dash = false
 		player.speed = 1000
 		player.can_take_damage = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dmofga5mq6sek"]
+[gd_scene load_steps=14 format=3 uid="uid://dmofga5mq6sek"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_7wtfc"]
 [ext_resource type="PackedScene" uid="uid://cgy1it1dunhmf" path="res://Scenes/player.tscn" id="1_pmetn"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b6tc4n1l2v43j" path="res://Scenes/spawner.tscn" id="4_qr0un"]
 [ext_resource type="AudioStream" uid="uid://pxy3kvj2bras" path="res://Sounds/Gameplay.mp3" id="5_6lh3g"]
 [ext_resource type="PackedScene" uid="uid://cps4rqnbftu3c" path="res://Scenes/health_ui.tscn" id="7_48u6a"]
+[ext_resource type="PackedScene" uid="uid://bj5k6wdvdq3ad" path="res://Scenes/current_item.tscn" id="8_10qxb"]
 [ext_resource type="PackedScene" uid="uid://cmkjtnk7mkker" path="res://Scenes/upgrade_menu.tscn" id="8_ob18v"]
 [ext_resource type="PackedScene" uid="uid://fwhv05rqg603" path="res://Scenes/pause_menu.tscn" id="9_2h1kw"]
 [ext_resource type="PackedScene" uid="uid://bvk5qc3k0wniv" path="res://Scenes/enemy_bar.tscn" id="9_kd637"]
@@ -51,6 +52,19 @@ stream = ExtResource("5_6lh3g")
 offset_right = 0.0
 offset_bottom = 0.0
 scale = Vector2(6, 6)
+
+[node name="CurrentItem" parent="UI" instance=ExtResource("8_10qxb")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 48.0
+offset_top = 153.0
+offset_right = 48.0
+offset_bottom = 153.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(2.13, 2.13)
 
 [node name="UpgradeMenu" parent="UI" instance=ExtResource("8_ob18v")]
 visible = false

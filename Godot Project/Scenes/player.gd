@@ -58,7 +58,6 @@ func change_weapon(weapon):
 			weapon_holder.add_child(new_weapon)
 
 func add_item(item):
-	new_item.emit(item)
 	match item:
 		"dash":
 			const ITEM = preload("res://Scenes/dash.tscn")
@@ -72,6 +71,7 @@ func add_item(item):
 			const ITEM = preload("res://Scenes/shield.tscn")
 			var new_item = ITEM.instantiate()
 			item_holder.add_child(new_item)
+	new_item.emit(item)
 
 func _on_damage_timer_timeout():
 	can_take_damage = true
