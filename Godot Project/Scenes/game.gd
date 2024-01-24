@@ -7,6 +7,7 @@ const SPAWN_TIME = 0.5
 @onready var round_timer = $Timers/RoundTimer
 @onready var change_timer = $Timers/ChangeTimer
 @onready var spawn_timer = $Timers/SpawnTimer
+@onready var time_left = %TimeLeft
 @onready var spawner = get_node("/root/Game/Player/Spawner/Path2D/SpawnPoint")
 @onready var music = $MusicPlayer
 @onready var upgrade_menu = $UI/UpgradeMenu
@@ -28,6 +29,7 @@ func _ready():
 
 func _physics_process(delta):
 	tile_counter.text = str(Global.tile_count) + " / " + str(rounds[Global.current_round]["quota"])
+	time_left.text = "%d:%02d" % [floor(round_timer.time_left / 60), int(round_timer.time_left) % 60]
 	#tile_counter.text = str(Engine.get_frames_per_second())
 	
 	if Global.tile_count >= rounds[Global.current_round]["quota"]:
