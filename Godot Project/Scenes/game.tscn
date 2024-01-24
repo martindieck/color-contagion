@@ -34,9 +34,10 @@ one_shot = true
 
 [node name="Player" parent="." instance=ExtResource("1_pmetn")]
 position = Vector2(960, 540)
+scale = Vector2(5, 5)
 
 [node name="Spawner" parent="Player" instance=ExtResource("4_qr0un")]
-scale = Vector2(0.167, 0.167)
+scale = Vector2(0.2, 0.2)
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
