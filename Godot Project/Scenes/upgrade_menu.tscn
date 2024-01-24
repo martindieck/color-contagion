@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmkjtnk7mkker"]
+[gd_scene load_steps=4 format=3 uid="uid://cmkjtnk7mkker"]
 
 [ext_resource type="Script" path="res://Scenes/upgrade_menu.gd" id="1_f6om8"]
 [ext_resource type="FontFile" uid="uid://djxj8mlg0fui6" path="res://Fonts/VCR_OSD_MONO.ttf" id="2_dw8c6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05uwx"]
+bg_color = Color(0.380392, 0.380392, 0.380392, 1)
 
 [node name="UpgradeMenu" type="PanelContainer"]
 process_mode = 2
@@ -17,29 +20,56 @@ offset_right = -842.0
 offset_bottom = -439.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_05uwx")
 script = ExtResource("1_f6om8")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
-[node name="Choice1" type="Button" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="UpgradeLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Choice1" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 1
+custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
+theme_override_constants/icon_max_width = 96
 theme_override_fonts/font = ExtResource("2_dw8c6")
 theme_override_font_sizes/font_size = 64
-text = "Test: Makes your gun "
+text = "Minigun"
+expand_icon = true
 
-[node name="Choice2" type="Button" parent="VBoxContainer"]
+[node name="Choice2" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
+theme_override_constants/icon_max_width = 96
+theme_override_font_sizes/font_size = 64
 text = "Test"
+expand_icon = true
 
-[node name="Choice3" type="Button" parent="VBoxContainer"]
+[node name="Choice3" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
+theme_override_constants/icon_max_width = 96
+theme_override_font_sizes/font_size = 64
 text = "Test"
+expand_icon = true
 
-[connection signal="pressed" from="VBoxContainer/Choice1" to="." method="_on_choice_1_pressed"]
-[connection signal="pressed" from="VBoxContainer/Choice2" to="." method="_on_choice_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/Choice3" to="." method="_on_choice_3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Choice1" to="." method="_on_choice_1_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Choice2" to="." method="_on_choice_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Choice3" to="." method="_on_choice_3_pressed"]
