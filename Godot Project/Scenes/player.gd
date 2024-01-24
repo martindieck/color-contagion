@@ -4,14 +4,18 @@ extends CharacterBody2D
 @onready var hurt_box = $HurtBox
 @onready var weapon_holder = $WeaponHolder
 @onready var item_holder = $ItemHolder
-@onready var damage_timer = $DamageTimer
-@onready var sprite_timer = $SpriteTimer
+@onready var power_holder = $PowerHolder
+@onready var damage_timer = $Timers/DamageTimer
+@onready var sprite_timer = $Timers/SpriteTimer
+@onready var power_timer = $Timers/PowerTimer
 
 var health = 3
 var sprite_flash = 0
 var can_take_damage = true
 var has_shield = false
 var speed = 600
+
+signal new_item
 
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -54,6 +58,7 @@ func change_weapon(weapon):
 			weapon_holder.add_child(new_weapon)
 
 func add_item(item):
+	new_item.emit(item)
 	match item:
 		"dash":
 			const ITEM = preload("res://Scenes/dash.tscn")
@@ -86,3 +91,29 @@ func _on_near_miss_body_entered(body):
 	if can_take_damage or has_shield:
 		Global.near_misses += 1
 		print(Global.near_misses)
+		
+func power_up():
+	power_timer.start()
+	var current_weapon = weapon_holder.get_children()[0].name
+	match current_weapon:
+		"Gun":
+			const WEAPON = preload("res://Scenes/gun.tscn")
+			var new_weapon = WEAPON.instantiate()
+			power_holder.add_child(new_weapon)
+		"Minigun":
+			const WEAPON = preload("res://Scenes/minigun.tscn")
+			var new_weapon = WEAPON.instantiate()
+			power_holder.add_child(new_weapon)
+		"Cannon":
+			const WEAPON = preload("res://Scenes/cannon.tscn")
+			var new_weapon = WEAPON.instantiate()
+			power_holder.add_child(new_weapon)
+		"Flamethrower":
+			const WEAPON = preload("res://Scenes/flamethrower.tscn")
+			var new_weapon = WEAPON.instantiate()
+			power_holder.add_child(new_weapon)
+	power_holder.get_children()[0].reverse = -1
+
+func _on_power_timer_timeout():
+	for child in power_holder.get_children():
+		child.queue_free()

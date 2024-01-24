@@ -12,7 +12,7 @@ const SPAWN_TIME = 0.5
 @onready var music = $MusicPlayer
 @onready var upgrade_menu = $UI/UpgradeMenu
 
-var quotas = [15000, 30000, 100000]
+var quotas = [1500, 3000, 100000]
 var round_times = [180, 180, 180]
 var rounds = {}
 var spawn_increase = 0
@@ -63,3 +63,19 @@ func spawn_mob():
 func _on_change_timer_timeout():
 	spawn_timer.wait_time -= spawn_increase
 	spawn_timer.wait_time = maxf(0.05, spawn_timer.wait_time)
+
+func _on_player_new_item(item):
+	pass
+	#match item:
+		#"dash":
+			#const ITEM = preload("res://Scenes/dash.tscn")
+			#var new_item = ITEM.instantiate()
+			#item_holder.add_child(new_item)
+		#"repulsion":
+			#const ITEM = preload("res://Scenes/repulsion.tscn")
+			#var new_item = ITEM.instantiate()
+			#item_holder.add_child(new_item)
+		#"shield":
+			#const ITEM = preload("res://Scenes/shield.tscn")
+			#var new_item = ITEM.instantiate()
+			#item_holder.add_child(new_item)

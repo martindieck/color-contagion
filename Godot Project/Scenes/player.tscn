@@ -98,12 +98,18 @@ motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_tu08t")
 
-[node name="DamageTimer" type="Timer" parent="."]
+[node name="Timers" type="Node" parent="."]
+
+[node name="DamageTimer" type="Timer" parent="Timers"]
 wait_time = 2.0
 one_shot = true
 
-[node name="SpriteTimer" type="Timer" parent="."]
+[node name="SpriteTimer" type="Timer" parent="Timers"]
 wait_time = 0.25
+
+[node name="PowerTimer" type="Timer" parent="Timers"]
+wait_time = 10.0
+one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_4t1l4")
@@ -138,6 +144,10 @@ position = Vector2(0, -16)
 
 [node name="ItemHolder" type="Node2D" parent="."]
 
-[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
-[connection signal="timeout" from="SpriteTimer" to="." method="_on_sprite_timer_timeout"]
+[node name="PowerHolder" type="Node2D" parent="."]
+position = Vector2(0, 16)
+
+[connection signal="timeout" from="Timers/DamageTimer" to="." method="_on_damage_timer_timeout"]
+[connection signal="timeout" from="Timers/SpriteTimer" to="." method="_on_sprite_timer_timeout"]
+[connection signal="timeout" from="Timers/PowerTimer" to="." method="_on_power_timer_timeout"]
 [connection signal="body_entered" from="NearMiss" to="." method="_on_near_miss_body_entered"]

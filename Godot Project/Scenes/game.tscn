@@ -122,3 +122,4 @@ visible = false
 [connection signal="timeout" from="Timers/ChangeTimer" to="." method="_on_change_timer_timeout"]
 [connection signal="timeout" from="Timers/SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="Timers/RoundTimer" to="." method="_on_round_timer_timeout"]
+[connection signal="new_item" from="Player" to="." method="_on_player_new_item"]

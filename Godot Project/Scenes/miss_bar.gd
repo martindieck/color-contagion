@@ -4,7 +4,7 @@ extends Control
 @onready var miss_bar = %MissBar
 @onready var power = $Power
 
-const THRESHOLD = 5
+const THRESHOLD = 3
 
 var can_power_up = false
 
@@ -20,6 +20,6 @@ func _process(delta):
 		
 	if Input.is_action_just_pressed("power_up") and can_power_up:
 		Global.near_misses = 0
-		#player.power_up()
+		player.power_up()
 		can_power_up = false
 		power.hide()
