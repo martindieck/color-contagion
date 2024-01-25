@@ -1,0 +1,146 @@
+[gd_scene load_steps=14 format=3 uid="uid://d4kxitc1riduf"]
+
+[ext_resource type="Script" path="res://Scenes/tutorial.gd" id="1_03kib"]
+[ext_resource type="PackedScene" uid="uid://dvrwosdr16poa" path="res://Scenes/background.tscn" id="2_igiea"]
+[ext_resource type="PackedScene" uid="uid://jhqd3iimsw3n" path="res://Scenes/terrain.tscn" id="3_o3tg6"]
+[ext_resource type="PackedScene" uid="uid://cgy1it1dunhmf" path="res://Scenes/player.tscn" id="4_s14jg"]
+[ext_resource type="AudioStream" uid="uid://dq0y8brssv0xh" path="res://Sounds/Tutorial.mp3" id="5_vgm6q"]
+[ext_resource type="PackedScene" uid="uid://cps4rqnbftu3c" path="res://Scenes/health_ui.tscn" id="7_h8lje"]
+[ext_resource type="PackedScene" uid="uid://bj5k6wdvdq3ad" path="res://Scenes/current_item.tscn" id="8_ip8ry"]
+[ext_resource type="PackedScene" uid="uid://cmkjtnk7mkker" path="res://Scenes/upgrade_menu.tscn" id="9_1o67h"]
+[ext_resource type="PackedScene" uid="uid://bvk5qc3k0wniv" path="res://Scenes/enemy_bar.tscn" id="10_ag03c"]
+[ext_resource type="PackedScene" uid="uid://ptkme37m5hs1" path="res://Scenes/miss_bar.tscn" id="11_mihed"]
+[ext_resource type="FontFile" uid="uid://djxj8mlg0fui6" path="res://Fonts/VCR_OSD_MONO.ttf" id="12_0yfg6"]
+[ext_resource type="PackedScene" uid="uid://fwhv05rqg603" path="res://Scenes/pause_menu.tscn" id="13_faij0"]
+[ext_resource type="PackedScene" uid="uid://clbc2j4o6isra" path="res://Scenes/arrow.tscn" id="14_dr8y1"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_03kib")
+
+[node name="Background" parent="." instance=ExtResource("2_igiea")]
+position = Vector2(-7, -36)
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="ChangeTimer" type="Timer" parent="Timers"]
+autostart = true
+
+[node name="SpawnTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+autostart = true
+
+[node name="RoundTimer" type="Timer" parent="Timers"]
+wait_time = 180.0
+one_shot = true
+
+[node name="Terrain" parent="." instance=ExtResource("3_o3tg6")]
+
+[node name="Player" parent="." instance=ExtResource("4_s14jg")]
+position = Vector2(960, 540)
+scale = Vector2(5, 5)
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("5_vgm6q")
+autoplay = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" parent="UI" instance=ExtResource("7_h8lje")]
+offset_right = 0.0
+offset_bottom = 0.0
+scale = Vector2(6, 6)
+
+[node name="CurrentItem" parent="UI" instance=ExtResource("8_ip8ry")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 48.0
+offset_top = 153.0
+offset_right = 48.0
+offset_bottom = 153.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(2.13, 2.13)
+
+[node name="UpgradeMenu" parent="UI" instance=ExtResource("9_1o67h")]
+visible = false
+offset_left = -59.0
+offset_top = -50.5002
+offset_right = 59.0
+offset_bottom = 50.5002
+size_flags_horizontal = 4
+
+[node name="EnemyCounter" parent="UI" instance=ExtResource("10_ag03c")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = -173.0
+offset_right = 60.0
+offset_bottom = -173.0
+grow_vertical = 0
+scale = Vector2(4, 4)
+
+[node name="MissCounter" parent="UI" instance=ExtResource("11_mihed")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -119.86
+offset_top = -173.0
+offset_right = -119.86
+offset_bottom = -173.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(4, 4)
+
+[node name="TileCounter" type="Label" parent="UI"]
+unique_name_in_owner = true
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -104.0
+offset_top = 28.0
+offset_right = -43.0
+offset_bottom = 116.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("12_0yfg6")
+theme_override_font_sizes/font_size = 70
+horizontal_alignment = 2
+
+[node name="TimeLeft" type="Label" parent="UI"]
+unique_name_in_owner = true
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -207.0
+offset_top = 107.0
+offset_right = -43.0
+offset_bottom = 195.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("12_0yfg6")
+theme_override_font_sizes/font_size = 70
+horizontal_alignment = 2
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("13_faij0")]
+process_mode = 3
+visible = false
+
+[node name="Arrow" parent="UI" instance=ExtResource("14_dr8y1")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_top = 89.0
+offset_bottom = 89.0
+grow_vertical = 1
+
+[connection signal="timeout" from="Timers/ChangeTimer" to="." method="_on_change_timer_timeout"]
+[connection signal="timeout" from="Timers/SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="Timers/RoundTimer" to="." method="_on_round_timer_timeout"]
+[connection signal="new_item" from="Player" to="." method="_on_player_new_item"]
