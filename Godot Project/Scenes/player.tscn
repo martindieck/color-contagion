@@ -136,6 +136,7 @@ autoplay = "movement"
 frame_progress = 0.59275
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
 
 [node name="WeaponHolder" type="Node2D" parent="."]
 position = Vector2(0, -16)
