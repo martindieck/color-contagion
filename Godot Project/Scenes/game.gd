@@ -31,7 +31,7 @@ func _ready():
 	spawn_increase = snappedf(0.45 / rounds[Global.current_round]["time"], 0.001)
 
 func _physics_process(delta):
-	tile_counter.text = str(Global.tile_count) + " / " + str(rounds[Global.current_round]["quota"])
+	tile_counter.text = str(Global.format_number(Global.tile_count)) + " / " + str(Global.format_number(rounds[Global.current_round]["quota"]))
 	time_left.text = "%d:%02d" % [floor(round_timer.time_left / 60), int(round_timer.time_left) % 60]
 	
 	if Global.tile_count >= rounds[Global.current_round]["quota"] and not finished:

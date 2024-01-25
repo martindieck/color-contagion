@@ -1,9 +1,9 @@
 extends Node2D
 
 func _process(delta):
-	%Tiles.text = str(Global.tile_count)
-	%Enemies.text = str(Global.total_enemies_killed)
-	%Misses.text = str(Global.total_near_misses)
+	%Tiles.text = str(Global.format_number(Global.tile_count))
+	%Enemies.text = str(Global.format_number(Global.total_enemies_killed))
+	%Misses.text = str(Global.format_number(Global.total_near_misses))
 
 func _on_play_again_pressed():
 	Global.tile_count = 0
