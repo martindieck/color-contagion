@@ -1,5 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://b8pwuug5bvw4u"]
+[gd_scene load_steps=22 format=3 uid="uid://b8pwuug5bvw4u"]
 
+[ext_resource type="Script" path="res://Scenes/farmer.gd" id="1_11qye"]
 [ext_resource type="Texture2D" uid="uid://e14ladb2ytc4" path="res://Sprites/Farmer-Sheet.png" id="1_fc0xk"]
 [ext_resource type="Texture2D" uid="uid://bef65pvq7aplo" path="res://Sprites/Farmer-Death-Sheet.png" id="2_13ecn"]
 
@@ -138,6 +139,7 @@ collision_layer = 14
 collision_mask = 6
 motion_mode = 1
 platform_on_leave = 2
+script = ExtResource("1_11qye")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -149,6 +151,5 @@ position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_xo5ib")
 animation = &"moving"
 autoplay = "moving"
-frame_progress = 0.0718152
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

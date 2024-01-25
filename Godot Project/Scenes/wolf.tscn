@@ -1,0 +1,120 @@
+[gd_scene load_steps=17 format=3 uid="uid://daa8giqmvunos"]
+
+[ext_resource type="Script" path="res://Scenes/wolf.gd" id="1_sue7o"]
+[ext_resource type="Texture2D" uid="uid://wxmhbogasc5e" path="res://Sprites/WolfDeath-Sheet.png" id="2_qa3ne"]
+[ext_resource type="Texture2D" uid="uid://c8h4qmrlfd80p" path="res://Sprites/Wolf-Sheet.png" id="3_h44g7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt2dl"]
+radius = 3.25
+height = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrxgw"]
+atlas = ExtResource("2_qa3ne")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njmlu"]
+atlas = ExtResource("2_qa3ne")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjynx"]
+atlas = ExtResource("2_qa3ne")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yer3"]
+atlas = ExtResource("2_qa3ne")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mb6kd"]
+atlas = ExtResource("2_qa3ne")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1nhm"]
+atlas = ExtResource("2_qa3ne")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nia3r"]
+atlas = ExtResource("2_qa3ne")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwmxf"]
+atlas = ExtResource("2_qa3ne")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yycru"]
+atlas = ExtResource("2_qa3ne")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sijyp"]
+atlas = ExtResource("3_h44g7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjcai"]
+atlas = ExtResource("3_h44g7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kfa6q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrxgw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njmlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjynx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yer3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mb6kd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1nhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nia3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwmxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yycru")
+}],
+"loop": false,
+"name": &"death",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sijyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjcai")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 8.0
+}]
+
+[node name="Wolf" type="CharacterBody2D"]
+scale = Vector2(4, 4)
+collision_layer = 14
+collision_mask = 6
+motion_mode = 1
+platform_on_leave = 2
+script = ExtResource("1_sue7o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_vt2dl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_kfa6q")
+animation = &"death"
+autoplay = "moving"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
