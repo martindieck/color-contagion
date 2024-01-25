@@ -21,10 +21,6 @@ config/icon="res://Sprites/icon.png"
 
 Global="*res://Scenes/global.gd"
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [display]
 
 window/size/viewport_width=1920
