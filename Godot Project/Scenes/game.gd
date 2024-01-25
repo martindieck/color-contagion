@@ -13,8 +13,8 @@ const SPAWN_TIME = 0.5
 @onready var upgrade_menu = $UI/UpgradeMenu
 @onready var current_item = $UI/CurrentItem
 
-var quotas = [1500, 3000, 100000]
-var round_times = [180, 180, 180]
+var quotas = [15000, 3000, 100000]
+var round_times = [60, 180, 180]
 var rounds = {}
 var spawn_increase = 0
 
@@ -56,10 +56,17 @@ func _on_spawn_timer_timeout():
 	spawn_mob()
 
 func spawn_mob():
-	var new_mob = preload("res://Scenes/farmer.tscn").instantiate()
-	spawner.progress_ratio = randf()
-	new_mob.global_position = spawner.global_position
-	add_child(new_mob)
+	match Global.current_round:
+		1:
+			var new_mob = preload("res://Scenes/farmer.tscn").instantiate()
+			spawner.progress_ratio = randf()
+			new_mob.global_position = spawner.global_position
+			add_child(new_mob)
+		_:
+			var new_mob = preload("res://Scenes/farmer.tscn").instantiate()
+			spawner.progress_ratio = randf()
+			new_mob.global_position = spawner.global_position
+			add_child(new_mob)
 
 func _on_change_timer_timeout():
 	spawn_timer.wait_time -= spawn_increase
