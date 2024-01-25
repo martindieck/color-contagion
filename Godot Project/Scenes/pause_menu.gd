@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 func _process(delta):
-	if Input.is_action_just_pressed("pause") and not Global.paused:
+	if Input.is_action_just_pressed("pause") and not Global.paused and not Global.in_cutscene:
 		get_tree().paused = true
 		Global.paused = true
 		show()

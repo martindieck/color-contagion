@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var damage_timer = $Timers/DamageTimer
 @onready var sprite_timer = $Timers/SpriteTimer
 @onready var power_timer = $Timers/PowerTimer
+@onready var camera = $Camera2D
 
 var health = 3
 var sprite_flash = 0
@@ -116,3 +117,6 @@ func power_up():
 func _on_power_timer_timeout():
 	for child in power_holder.get_children():
 		child.queue_free()
+		
+func disable_camera():
+	camera.enabled = false

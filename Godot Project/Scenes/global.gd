@@ -7,6 +7,7 @@ var near_misses = 0
 
 var paused = false
 var is_upgrading = false
+var in_cutscene = false
 
 var dash_cooldown = 10
 var repulsion_cooldown = 10

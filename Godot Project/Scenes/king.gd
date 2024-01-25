@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var tilemap = get_node("/root/Game/Terrain")
 @onready var sprite = $AnimatedSprite2D
 @onready var collision = $CollisionShape2D
+@onready var camera = $Camera2D
 
 const SPEED = 250
 var alive = true
@@ -30,6 +31,11 @@ func take_damage():
 
 func death():
 	alive = false
+	player.disable_camera()
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	Global.in_cutscene = true
+	get_tree().paused = true
+	camera.enabled = true
 	Global.enemies_killed += 1
 	sprite.play("death")
 	collision.set_deferred("disabled", true)
