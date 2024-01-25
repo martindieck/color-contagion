@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://djxj8mlg0fui6" path="res://Fonts/VCR_OSD_MONO.ttf" id="2_dw8c6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05uwx"]
-bg_color = Color(0.380392, 0.380392, 0.380392, 1)
+bg_color = Color(0.4, 0.4, 0.4, 1)
 
 [node name="UpgradeMenu" type="PanelContainer"]
 process_mode = 2
@@ -38,6 +38,7 @@ theme_override_constants/separation = 40
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 80
+text = "Choose"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -63,13 +64,28 @@ expand_icon = true
 
 [node name="Choice3" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(600, 100)
+custom_minimum_size = Vector2(750, 100)
 layout_mode = 2
 theme_override_constants/icon_max_width = 96
 theme_override_font_sizes/font_size = 64
-text = "Test"
+text = "Shield of Color"
 expand_icon = true
 
+[node name="ToolText" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.4, 0.4, 0.4, 1)
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]Press Shift to repel enemies around you. You're protected while it is active. (10 sec cooldown)[/center]"
+fit_content = true
+
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Choice1" to="." method="_on_choice_1_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/Choice1" to="." method="_on_choice_1_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Choice1" to="." method="_on_choice_1_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Choice2" to="." method="_on_choice_2_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/Choice2" to="." method="_on_choice_2_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Choice2" to="." method="_on_choice_2_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Choice3" to="." method="_on_choice_3_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/Choice3" to="." method="_on_choice_3_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Choice3" to="." method="_on_choice_3_pressed"]
