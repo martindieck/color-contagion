@@ -14,7 +14,7 @@ func _ready():
 
 func _physics_process(delta):
 	if alive:
-		var direction = global_position.direction_to(player.global_position)
+		var direction = -global_position.direction_to(player.global_position)
 		velocity = direction * SPEED
 		if sign(direction.x) == -1:
 			sprite.flip_h = true
@@ -27,10 +27,6 @@ func take_damage():
 	health -= 1
 	if health <= 0:
 		death()
-
-func _on_animated_sprite_2d_animation_finished():
-	if sprite.animation == "death":
-		queue_free()
 
 func death():
 	alive = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmofga5mq6sek"]
+[gd_scene load_steps=15 format=3 uid="uid://dmofga5mq6sek"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_7wtfc"]
 [ext_resource type="PackedScene" uid="uid://cgy1it1dunhmf" path="res://Scenes/player.tscn" id="1_pmetn"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bvk5qc3k0wniv" path="res://Scenes/enemy_bar.tscn" id="9_kd637"]
 [ext_resource type="PackedScene" uid="uid://ptkme37m5hs1" path="res://Scenes/miss_bar.tscn" id="10_2f4o8"]
 [ext_resource type="FontFile" uid="uid://djxj8mlg0fui6" path="res://Fonts/VCR_OSD_MONO.ttf" id="10_j1j0u"]
+[ext_resource type="PackedScene" uid="uid://clbc2j4o6isra" path="res://Scenes/arrow.tscn" id="14_r2hhg"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_7wtfc")
@@ -132,6 +133,15 @@ horizontal_alignment = 2
 [node name="PauseMenu" parent="UI" instance=ExtResource("9_2h1kw")]
 process_mode = 3
 visible = false
+
+[node name="Arrow" parent="UI" instance=ExtResource("14_r2hhg")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_top = 89.0
+offset_bottom = 89.0
+grow_vertical = 1
 
 [connection signal="timeout" from="Timers/ChangeTimer" to="." method="_on_change_timer_timeout"]
 [connection signal="timeout" from="Timers/SpawnTimer" to="." method="_on_spawn_timer_timeout"]

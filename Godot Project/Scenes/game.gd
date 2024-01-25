@@ -12,11 +12,13 @@ const SPAWN_TIME = 0.5
 @onready var music = $MusicPlayer
 @onready var upgrade_menu = $UI/UpgradeMenu
 @onready var current_item = $UI/CurrentItem
+@onready var arrow = $UI/Arrow
 
-var quotas = [1500, 3000, 100000]
+var quotas = [1500, 3000, 4500]
 var round_times = [60, 180, 180]
 var rounds = {}
 var spawn_increase = 0
+var finished = false
 
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -31,9 +33,8 @@ func _ready():
 func _physics_process(delta):
 	tile_counter.text = str(Global.tile_count) + " / " + str(rounds[Global.current_round]["quota"])
 	time_left.text = "%d:%02d" % [floor(round_timer.time_left / 60), int(round_timer.time_left) % 60]
-	#tile_counter.text = str(Engine.get_frames_per_second())
 	
-	if Global.tile_count >= rounds[Global.current_round]["quota"]:
+	if Global.tile_count >= rounds[Global.current_round]["quota"] and not finished:
 		if Global.current_round + 1 in rounds.keys():
 			Global.current_round += 1
 			spawn_increase = floorf(0.45 / rounds[Global.current_round]["time"])
@@ -42,7 +43,18 @@ func _physics_process(delta):
 			round_timer.set_wait_time(rounds[Global.current_round]["time"])
 			round_timer.start()
 		else:
-			print("YOU HAVE WON")
+			spawn_timer.wait_time = SPAWN_TIME
+			change_timer.stop()
+			finished = true
+			var king = preload("res://Scenes/king.tscn").instantiate()
+			var castle = preload("res://Scenes/castle.tscn").instantiate()
+			spawner.progress_ratio = 0.85
+			king.global_position = spawner.global_position
+			king.global_position.y -= 10000
+			castle.global_position = king.global_position
+			arrow.begin_tracking(king)
+			add_child(king)
+			add_child(castle)
 
 func _on_round_timer_timeout():
 	if Global.tile_count < rounds[Global.current_round]["quota"]:

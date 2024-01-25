@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://clbc2j4o6isra"]
+
+[ext_resource type="Script" path="res://Scenes/arrow.gd" id="1_3ntyn"]
+[ext_resource type="Texture2D" uid="uid://bhc4y8dj1tgyl" path="res://Sprites/WhiteArrow.png" id="1_5moet"]
+
+[node name="Arrow" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6, 6)
+script = ExtResource("1_3ntyn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_5moet")
