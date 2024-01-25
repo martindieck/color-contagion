@@ -58,7 +58,7 @@ func _on_spawn_timer_timeout():
 func spawn_mob():
 	match Global.current_round:
 		1:
-			var new_mob = preload("res://Scenes/farmer.tscn").instantiate()
+			var new_mob = preload("res://Scenes/knight.tscn").instantiate()
 			spawner.progress_ratio = randf()
 			new_mob.global_position = spawner.global_position
 			add_child(new_mob)
