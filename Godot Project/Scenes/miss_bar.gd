@@ -19,6 +19,7 @@ func _process(delta):
 		can_power_up = true
 		
 	if Input.is_action_just_pressed("power_up") and can_power_up:
+		Global.total_near_misses += Global.near_misses
 		Global.near_misses = 0
 		player.power_up()
 		can_power_up = false

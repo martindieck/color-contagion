@@ -19,6 +19,7 @@ func _process(delta):
 		can_regain = true
 		
 	if Input.is_action_just_pressed("regain") and can_regain:
+		Global.total_enemies_killed += Global.enemies_killed
 		Global.enemies_killed = 0
 		player.health += 1
 		can_regain = false
