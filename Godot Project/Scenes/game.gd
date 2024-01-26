@@ -17,7 +17,7 @@ const SPAWN_TIME = 0.5
 @onready var player = $Player
 
 var quotas = [1500, 3000, 4500]
-var round_times = [60, 180, 180]
+var round_times = [5, 180, 180]
 var rounds = {}
 var spawn_increase = 0
 var finished = false
@@ -126,6 +126,7 @@ func _on_king_death():
 	transition_screen.transition()
 
 func _on_transition_screen_transitioned():
+	get_tree().paused = false
 	get_tree().change_scene_to_file(Global.next_scene)
 	
 func game_over():

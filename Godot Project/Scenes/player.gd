@@ -9,37 +9,39 @@ extends CharacterBody2D
 @onready var sprite_timer = $Timers/SpriteTimer
 @onready var power_timer = $Timers/PowerTimer
 @onready var camera = $Camera2D
+@onready var animation = $AnimationPlayer
 @onready var transition_screen = get_node("/root/Game/TransitionScreen")
 
 var health = 3
 var sprite_flash = 0
 var can_take_damage = true
 var has_shield = false
+var cant_move = false
+var alive = true
 var speed = 600
 
 signal new_item
 
 func _physics_process(delta):
-	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * speed
-	move_and_slide()
-	
-	if direction != Vector2(0,0):
-		sprite_2d.play("movement")
-	else:
-		sprite_2d.play("idle")
-	
-	#if Input.is_action_just_pressed("change"):
-		#add_item("repulsion")
+	if not cant_move:
+		var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		velocity = direction * speed
+		move_and_slide()
 		
+		if direction != Vector2(0,0):
+			sprite_2d.play("movement")
+		else:
+			sprite_2d.play("idle")
+
 	var overlapping_mobs = hurt_box.get_overlapping_bodies()
 	if overlapping_mobs.size() > 0 and can_take_damage:
 		health -= 1
-		can_take_damage = false
-		damage_timer.start()
-		sprite_timer.start()
-		if health <= 0:
+		if health <= 0 and alive:
 			death()
+		elif health > 0:
+			can_take_damage = false
+			damage_timer.start()
+			sprite_timer.start()
 		
 func change_weapon(weapon):
 	for child in weapon_holder.get_children():
@@ -133,5 +135,18 @@ func shift_camera():
 	camera.position.y -= 40
 	
 func death():
-	Global.next_scene = "res://Scenes/victory_screen.tscn"
+	alive = false
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	remove_weapons()
+	cant_move = true
+	Global.in_cutscene = true
+	get_tree().paused = true
+	$GPUParticles2D.restart()
+	sprite_2d.hide()
+	camera.zoom = Vector2(3,3)
+	$Timers/DeathTimer.start()
+
+func _on_death_timer_timeout():
+	Global.in_cutscene = false
+	Global.next_scene = "res://Scenes/victory_screen.tscn" #CHANGE FOR DEATH SCREEN
 	transition_screen.transition()
