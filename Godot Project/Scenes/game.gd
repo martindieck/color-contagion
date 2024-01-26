@@ -14,6 +14,7 @@ const SPAWN_TIME = 0.5
 @onready var arrow = $UI/Arrow
 @onready var transition_screen = $TransitionScreen
 @onready var player = $Player
+@onready var announcements = $UI/Announcements
 
 var quotas = [1500, 3000, 4500]
 var round_times = [180, 180, 180]
@@ -43,10 +44,12 @@ func _physics_process(delta):
 			upgrade_menu.upgrade()
 			round_timer.set_wait_time(rounds[Global.current_round]["time"])
 			round_timer.start()
+			announcements.show_message(false)
 		else:
 			spawn_timer.wait_time = SPAWN_TIME
 			change_timer.stop()
 			finished = true
+			announcements.show_message(true)
 			var king = preload("res://Scenes/king.tscn").instantiate()
 			var castle = preload("res://Scenes/castle.tscn").instantiate()
 			spawner.progress_ratio = 0.85
@@ -56,7 +59,7 @@ func _physics_process(delta):
 			arrow.begin_tracking(king)
 			add_child(king)
 			add_child(castle)
-			king.king_death.connect(_on_item_used)
+			king.king_death.connect(_on_king_death)
 
 func _on_round_timer_timeout():
 	if Global.tile_count < rounds[Global.current_round]["quota"]:

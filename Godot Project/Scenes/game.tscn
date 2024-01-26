@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dmofga5mq6sek"]
+[gd_scene load_steps=17 format=3 uid="uid://dmofga5mq6sek"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_7wtfc"]
 [ext_resource type="PackedScene" uid="uid://cgy1it1dunhmf" path="res://Scenes/player.tscn" id="1_pmetn"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ptkme37m5hs1" path="res://Scenes/miss_bar.tscn" id="10_2f4o8"]
 [ext_resource type="FontFile" uid="uid://djxj8mlg0fui6" path="res://Fonts/VCR_OSD_MONO.ttf" id="10_j1j0u"]
 [ext_resource type="PackedScene" uid="uid://clbc2j4o6isra" path="res://Scenes/arrow.tscn" id="14_r2hhg"]
+[ext_resource type="PackedScene" uid="uid://docah8qvo2iv1" path="res://Scenes/announcements.tscn" id="15_a60in"]
 [ext_resource type="PackedScene" uid="uid://dsadeqpy6fp" path="res://Scenes/transition_screen.tscn" id="15_ofacw"]
 
 [node name="Game" type="Node2D"]
@@ -144,6 +145,17 @@ anchor_bottom = 0.0
 offset_top = 89.0
 offset_bottom = 89.0
 grow_vertical = 1
+
+[node name="Announcements" parent="UI" instance=ExtResource("15_a60in")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = -253.0
+offset_top = -97.0
+offset_right = -253.0
+offset_bottom = -97.0
+grow_vertical = 0
 
 [node name="TransitionScreen" parent="." instance=ExtResource("15_ofacw")]
 
