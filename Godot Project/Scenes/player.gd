@@ -149,5 +149,5 @@ func death():
 
 func _on_death_timer_timeout():
 	Global.in_cutscene = false
-	Global.next_scene = "res://Scenes/victory_screen.tscn" #CHANGE FOR DEATH SCREEN
+	Global.next_scene = "res://Scenes/game_over.tscn"
 	transition_screen.transition()
