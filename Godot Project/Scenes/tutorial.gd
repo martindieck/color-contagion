@@ -10,6 +10,7 @@ var buffer
 @onready var time_left = %TimeLeft
 @onready var health_ui = %HealthUI
 @onready var tile_counter = %TileCounter
+@onready var enemy_counter = $UI/EnemyCounter
 @onready var player = get_node("/root/Game/Player")
 
 func _ready():
@@ -38,6 +39,8 @@ func _on_buffer_timeout():
 func _on_gun_area_body_entered(body):
 	if body.name == "Player":
 		player.change_weapon("gun")
+		var target = preload("res://Scenes/target.tscn").instantiate()
+		add_child(target)
 
 func _on_counter_area_body_entered(body):
 	if body.name == "Player":
@@ -48,3 +51,8 @@ func _on_counter_area_body_entered(body):
 func _on_hearts_area_body_entered(body):
 	if body.name == "Player":
 		flash_asset(health_ui)
+
+func _on_enemy_count_area_body_entered(body):
+	if body.name == "Player":
+		flash_asset(enemy_counter)
+		Global.enemies_killed = Global.enemy_bar_threshold - 2

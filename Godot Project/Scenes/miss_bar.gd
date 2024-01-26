@@ -4,17 +4,17 @@ extends Control
 @onready var miss_bar = %MissBar
 @onready var power = $Power
 
-const THRESHOLD = 3
+var threshold = Global.miss_bar_threshold
 
 var can_power_up = false
 
 func _ready():
-	miss_bar.max_value = THRESHOLD
+	miss_bar.max_value = threshold
 
 func _process(delta):
 	miss_bar.value = Global.near_misses
 	
-	if Global.near_misses >= THRESHOLD and player.health < 10:
+	if Global.near_misses >= threshold and player.health < 10:
 		power.show()
 		can_power_up = true
 		

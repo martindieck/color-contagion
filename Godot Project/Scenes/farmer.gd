@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var collision = $CollisionShape2D
 
 const SPEED = 250
-var alive = true
+@export var alive = true
 var health = 1
 
 func _ready():
