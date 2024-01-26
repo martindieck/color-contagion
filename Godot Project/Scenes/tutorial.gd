@@ -11,6 +11,7 @@ var buffer
 @onready var health_ui = %HealthUI
 @onready var tile_counter = %TileCounter
 @onready var enemy_counter = $UI/EnemyCounter
+@onready var miss_counter = $UI/MissCounter
 @onready var player = get_node("/root/Game/Player")
 
 func _ready():
@@ -56,3 +57,8 @@ func _on_enemy_count_area_body_entered(body):
 	if body.name == "Player":
 		flash_asset(enemy_counter)
 		Global.enemies_killed = Global.enemy_bar_threshold - 2
+
+func _on_miss_count_area_body_entered(body):
+	if body.name == "Player":
+		flash_asset(miss_counter)
+		Global.near_misses = Global.miss_bar_threshold - 1
