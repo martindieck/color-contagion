@@ -1,6 +1,6 @@
 extends Node2D
 
-func _process(delta):
+func _ready():
 	%Tiles.text = str(Global.format_number(Global.tile_count))
 	%Enemies.text = str(Global.format_number(Global.total_enemies_killed))
 	%Misses.text = str(Global.format_number(Global.total_near_misses))

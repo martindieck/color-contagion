@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bdcflomffrmq2"]
+[gd_scene load_steps=32 format=3 uid="uid://bdcflomffrmq2"]
 
 [ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1_lclt3"]
 [ext_resource type="Texture2D" uid="uid://cfsmky0vn3w2l" path="res://Sprites/Title-Sheet.png" id="2_bssf5"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://v1o46wakkwfk" path="res://Sounds/Theme.mp3" id="3_kwt1a"]
 [ext_resource type="Texture2D" uid="uid://s5k8aiytxuqf" path="res://Sprites/JamSmall.png" id="3_x0fl4"]
 [ext_resource type="Texture2D" uid="uid://bp3br7xmlb4vj" path="res://Sprites/Krutterlax Logo.png" id="5_5r5pu"]
+[ext_resource type="PackedScene" uid="uid://iqmv22x0syt1" path="res://Scenes/settings.tscn" id="6_v0qu4"]
 [ext_resource type="PackedScene" uid="uid://dsadeqpy6fp" path="res://Scenes/transition_screen.tscn" id="7_m1tux"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ooiut"]
@@ -253,17 +254,14 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Tutorial"
 
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(200, 80)
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "Options"
-
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Quit"
+
+[node name="Settings" parent="MarginContainer/VBoxContainer" instance=ExtResource("6_v0qu4")]
+layout_mode = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_kwt1a")
@@ -291,6 +289,5 @@ vertical_alignment = 1
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="transitioned" from="TransitionScreen" to="." method="_on_transition_screen_transitioned"]

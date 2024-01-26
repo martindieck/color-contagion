@@ -40,6 +40,8 @@ func death():
 	get_tree().paused = true
 	camera.enabled = true
 	Global.enemies_killed += 1
+	Global.total_enemies_killed += Global.enemies_killed
+	Global.total_near_misses += Global.near_misses
 	sprite.play("death")
 	collision.set_deferred("disabled", true)
 

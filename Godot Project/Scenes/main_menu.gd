@@ -23,7 +23,7 @@ func _on_tutorial_pressed():
 	transition_screen.transition()
 
 func _on_options_pressed():
-	pass # Replace with function body.
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 func _on_quit_pressed():
 	get_tree().quit()
