@@ -17,7 +17,7 @@ const SPAWN_TIME = 0.5
 @onready var player = $Player
 
 var quotas = [1500, 3000, 4500]
-var round_times = [5, 180, 180]
+var round_times = [180, 180, 180]
 var rounds = {}
 var spawn_increase = 0
 var finished = false

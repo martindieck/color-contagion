@@ -9,7 +9,6 @@ extends CharacterBody2D
 @onready var sprite_timer = $Timers/SpriteTimer
 @onready var power_timer = $Timers/PowerTimer
 @onready var camera = $Camera2D
-@onready var animation = $AnimationPlayer
 @onready var transition_screen = get_node("/root/Game/TransitionScreen")
 
 var health = 3
@@ -137,6 +136,8 @@ func shift_camera():
 func death():
 	alive = false
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	Global.total_enemies_killed += Global.enemies_killed
+	Global.total_near_misses += Global.near_misses
 	remove_weapons()
 	cant_move = true
 	Global.in_cutscene = true

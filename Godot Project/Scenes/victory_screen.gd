@@ -12,7 +12,12 @@ func _on_play_again_pressed():
 	Global.near_misses = 0
 	Global.total_enemies_killed = 0
 	Global.total_near_misses = 0
-	get_tree().change_scene_to_file("res://Scenes/game.tscn")
+	Global.next_scene = "res://Scenes/game.tscn"
+	$TransitionScreen.transition()
 
 func _on_main_menu_pressed():
-	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	Global.next_scene = "res://Scenes/main_menu.tscn"
+	$TransitionScreen.transition()
+
+func _on_transition_screen_transitioned():
+	get_tree().change_scene_to_file(Global.next_scene)
