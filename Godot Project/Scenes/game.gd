@@ -17,7 +17,7 @@ const SPAWN_TIME = 0.5
 @onready var announcements = $UI/Announcements
 @onready var enemies = $Enemies
 
-var quotas = [25000, 100000, 150000]
+var quotas = [250, 1000, 1500]
 var round_times = [180, 120, 90]
 var rounds = {}
 var spawn_increase = 0
@@ -58,6 +58,7 @@ func _physics_process(delta):
 			add_child(king)
 			add_child(castle)
 			king.king_death.connect(_on_king_death)
+			king.remove_target.connect(_on_remove_target)
 
 func _on_round_timer_timeout():
 	if Global.tile_count < rounds[Global.current_round]["quota"]:
@@ -123,8 +124,11 @@ func _on_item_used():
 
 func _on_king_death():
 	Global.next_scene = "res://Scenes/victory_screen.tscn"
-	actual_target.hide()
 	transition_screen.transition()
+
+func _on_remove_target():
+	actual_target.hide()
+	$MusicPlayer.stop()
 
 func _on_transition_screen_transitioned():
 	get_tree().paused = false

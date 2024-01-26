@@ -1,8 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://bqk52akxnogqu"]
+[gd_scene load_steps=32 format=3 uid="uid://bqk52akxnogqu"]
 
 [ext_resource type="Script" path="res://Scenes/king.gd" id="1_xjjhk"]
 [ext_resource type="Texture2D" uid="uid://cqubhyjeomryi" path="res://Sprites/KingDeath-Sheet.png" id="2_nlbif"]
 [ext_resource type="Texture2D" uid="uid://dk8yhhlllb06w" path="res://Sprites/King-Sheet.png" id="3_0h31n"]
+[ext_resource type="AudioStream" uid="uid://besqqmxcxbab1" path="res://Sounds/Mud.mp3" id="4_p5yfr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt2dl"]
 radius = 3.25
@@ -175,6 +176,83 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_3i3pe"]
+resource_name = "death"
+length = 5.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"death", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 3.7)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera2D:zoom:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 3.7)
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 2.1,
+"start_offset": 1.28,
+"stream": ExtResource("4_p5yfr")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="Animation" id="Animation_nivm0"]
+resource_name = "RESET"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4mman"]
+_data = {
+"RESET": SubResource("Animation_nivm0"),
+"death": SubResource("Animation_3i3pe")
+}
+
 [node name="King" type="CharacterBody2D"]
 scale = Vector2(6, 6)
 collision_layer = 14
@@ -195,8 +273,19 @@ autoplay = "moving"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
-zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4mman")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

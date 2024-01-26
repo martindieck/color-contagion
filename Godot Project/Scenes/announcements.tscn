@@ -31,8 +31,8 @@ theme_override_constants/margin_bottom = 20
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "Follow the arrow at the top
-to find and kill the king"
+text = "Quick! Follow the arrow at the top
+to find and kill the fleeing king"
 horizontal_alignment = 1
 
 [node name="ShowTimer" type="Timer" parent="."]

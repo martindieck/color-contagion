@@ -12,6 +12,7 @@ var alive = true
 var health = 1
 
 signal king_death
+signal remove_target
 
 func _ready():
 	sprite.play("moving")
@@ -34,6 +35,7 @@ func take_damage():
 
 func death():
 	alive = false
+	remove_target.emit()
 	player.disable_camera()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	Global.in_cutscene = true
@@ -42,9 +44,9 @@ func death():
 	Global.enemies_killed += 1
 	Global.total_enemies_killed += Global.enemies_killed
 	Global.total_near_misses += Global.near_misses
-	sprite.play("death")
+	$AnimationPlayer.play("death")
+	$DeathTimer.start()
 	collision.set_deferred("disabled", true)
 
-func _on_animated_sprite_2d_animation_finished():
-	if sprite.animation == "death":
-		king_death.emit()
+func _on_death_timer_timeout():
+	king_death.emit()

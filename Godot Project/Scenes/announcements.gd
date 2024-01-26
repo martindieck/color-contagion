@@ -4,7 +4,7 @@ extends Control
 
 func show_message(end):
 	if end:
-		label.text = "Follow the arrow at the top\nto find and kill the fleeing king"
+		label.text = "Quick! Follow the arrow at the top\nto find and kill the fleeing king"
 	else:
 		match Global.current_round:
 			2:
