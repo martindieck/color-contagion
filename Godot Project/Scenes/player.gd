@@ -45,6 +45,10 @@ func change_weapon(weapon):
 	for child in weapon_holder.get_children():
 		child.queue_free()
 	match weapon:
+		"gun":
+			const WEAPON = preload("res://Scenes/gun.tscn")
+			var new_weapon = WEAPON.instantiate()
+			weapon_holder.add_child(new_weapon)
 		"minigun":
 			const WEAPON = preload("res://Scenes/minigun.tscn")
 			var new_weapon = WEAPON.instantiate()
@@ -120,3 +124,10 @@ func _on_power_timer_timeout():
 		
 func disable_camera():
 	camera.enabled = false
+	
+func remove_weapons():
+	for child in weapon_holder.get_children():
+		child.queue_free()
+
+func shift_camera():
+	camera.position.y -= 40

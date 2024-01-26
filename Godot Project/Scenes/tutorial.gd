@@ -1,11 +1,50 @@
 extends Node2D
 
+var flash = 0
+var selected_node
+var buffer
 
-# Called when the node enters the scene tree for the first time.
+@onready var flash_timer = %FlashTimer
+@onready var round_timer = $Timers/RoundTimer
+@onready var buffer_timer = $Timers/Buffer
+@onready var time_left = %TimeLeft
+@onready var health_ui = %HealthUI
+@onready var tile_counter = %TileCounter
+@onready var player = get_node("/root/Game/Player")
+
 func _ready():
-	pass # Replace with function body.
+	player.remove_weapons()
+	player.shift_camera()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	tile_counter.text = str(Global.format_number(Global.tile_count)) + " / " + str(Global.format_number(1000000))
+	time_left.text = "%d:%02d" % [floor(round_timer.time_left / 60), int(round_timer.time_left) % 60]
+	
+func flash_asset(node):
+	selected_node = node
+	flash_timer.start()
+
+func _on_flash_timer_timeout():
+	flash += 1
+	selected_node.set_visible(not selected_node.visible)
+	if flash >= 10:
+		flash = 0
+		flash_timer.stop()
+		selected_node.show()
+
+func _on_buffer_timeout():
+	flash_asset(buffer)
+
+func _on_gun_area_body_entered(body):
+	if body.name == "Player":
+		player.change_weapon("gun")
+
+func _on_counter_area_body_entered(body):
+	if body.name == "Player":
+		flash_asset(tile_counter)
+		buffer = time_left
+		buffer_timer.start()
+
+func _on_hearts_area_body_entered(body):
+	if body.name == "Player":
+		flash_asset(health_ui)
