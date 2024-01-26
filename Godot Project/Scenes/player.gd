@@ -20,6 +20,7 @@ var alive = true
 var speed = 600
 
 signal new_item
+signal player_dead
 
 func _physics_process(delta):
 	if not cant_move:
@@ -142,9 +143,11 @@ func death():
 	cant_move = true
 	Global.in_cutscene = true
 	get_tree().paused = true
-	$GPUParticles2D.restart()
-	sprite_2d.hide()
-	camera.zoom = Vector2(3,3)
+	player_dead.emit()
+	$AnimationPlayer.play("death")
+	#$GPUParticles2D.restart()
+	#sprite_2d.hide()
+	#camera.zoom = Vector2(3,3)
 	$Timers/DeathTimer.start()
 
 func _on_death_timer_timeout():

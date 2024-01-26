@@ -1,10 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://cgy1it1dunhmf"]
+[gd_scene load_steps=25 format=3 uid="uid://cgy1it1dunhmf"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_tu08t"]
 [ext_resource type="Texture2D" uid="uid://dhqnudti72myx" path="res://Sprites/Player_Idle-Sheet-Green.png" id="2_eu3xy"]
 [ext_resource type="Texture2D" uid="uid://db6ch33p2tcii" path="res://Sprites/Player_Movement-Sheet-Green.png" id="3_pstyn"]
 [ext_resource type="PackedScene" uid="uid://cj513qhaer8ld" path="res://Scenes/gun.tscn" id="4_qaufl"]
 [ext_resource type="Texture2D" uid="uid://q2wlrjlch0yi" path="res://Sprites/GreenParticle.png" id="5_etqgj"]
+[ext_resource type="AudioStream" uid="uid://hgnhckknrglf" path="res://Sounds/Beeping.wav" id="6_l05s3"]
+[ext_resource type="AudioStream" uid="uid://b7qcn6bw1era8" path="res://Sounds/Explosion.wav" id="7_f6pfb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4t1l4"]
 radius = 4.5
@@ -104,6 +106,126 @@ radial_accel_max = 14.61
 scale_min = 6.0
 scale_max = 6.0
 
+[sub_resource type="Animation" id="Animation_gbgiq"]
+resource_name = "death"
+length = 4.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Beep")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_l05s3")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.5, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(2, 2), Vector2(2.5, 2.5), Vector2(3, 3)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Beep")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 2.48,
+"start_offset": 0.0,
+"stream": ExtResource("7_f6pfb")
+}],
+"times": PackedFloat32Array(0.8)
+}
+tracks/2/use_blend = true
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticles2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.45),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stop"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_og0vy"]
+resource_name = "RESET"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v7u8s"]
+_data = {
+"RESET": SubResource("Animation_og0vy"),
+"death": SubResource("Animation_gbgiq")
+}
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(6, 6)
 motion_mode = 1
@@ -124,7 +246,7 @@ wait_time = 10.0
 one_shot = true
 
 [node name="DeathTimer" type="Timer" parent="Timers"]
-wait_time = 3.0
+wait_time = 7.0
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -174,6 +296,16 @@ texture = ExtResource("5_etqgj")
 lifetime = 6.0
 one_shot = true
 explosiveness = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v7u8s")
+}
+
+[node name="Beep" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 
 [connection signal="timeout" from="Timers/DamageTimer" to="." method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="Timers/SpriteTimer" to="." method="_on_sprite_timer_timeout"]

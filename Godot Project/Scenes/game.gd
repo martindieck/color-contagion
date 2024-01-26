@@ -141,3 +141,6 @@ func _on_upgrade_menu_finished_upgrading():
 	for body in enemies.get_children():
 		if body.has_method("death"):
 			body.death()
+
+func _on_player_player_dead():
+	$MusicPlayer.stop()
