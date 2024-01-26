@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bdcflomffrmq2"]
+[gd_scene load_steps=31 format=3 uid="uid://bdcflomffrmq2"]
 
 [ext_resource type="Script" path="res://Scenes/main_menu.gd" id="1_lclt3"]
 [ext_resource type="Texture2D" uid="uid://cfsmky0vn3w2l" path="res://Sprites/Title-Sheet.png" id="2_bssf5"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://v1o46wakkwfk" path="res://Sounds/Theme.mp3" id="3_kwt1a"]
 [ext_resource type="Texture2D" uid="uid://s5k8aiytxuqf" path="res://Sprites/JamSmall.png" id="3_x0fl4"]
 [ext_resource type="Texture2D" uid="uid://bp3br7xmlb4vj" path="res://Sprites/Krutterlax Logo.png" id="5_5r5pu"]
+[ext_resource type="PackedScene" uid="uid://dsadeqpy6fp" path="res://Scenes/transition_screen.tscn" id="7_m1tux"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ooiut"]
 atlas = ExtResource("2_bssf5")
@@ -286,7 +287,10 @@ text = "MADE BY KRUTTERLAX FOR PIRATE GAME JAM 14"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TransitionScreen" parent="." instance=ExtResource("7_m1tux")]
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="transitioned" from="TransitionScreen" to="." method="_on_transition_screen_transitioned"]

@@ -2,21 +2,6 @@
 
 [ext_resource type="Script" path="res://Scenes/transition_screen.gd" id="1_rmq14"]
 
-[sub_resource type="Animation" id="Animation_km1t8"]
-resource_name = "fade_to_normal"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_ej86e"]
 length = 0.001
 tracks/0/type = "value"
@@ -47,6 +32,21 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_km1t8"]
+resource_name = "fade_to_normal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_brrh1"]
 _data = {
 "RESET": SubResource("Animation_ej86e"),
@@ -55,6 +55,7 @@ _data = {
 }
 
 [node name="TransitionScreen" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_rmq14")
 
 [node name="ColorRect" type="ColorRect" parent="."]

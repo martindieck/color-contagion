@@ -12,6 +12,8 @@ var paused = false
 var is_upgrading = false
 var in_cutscene = false
 
+var next_scene
+
 var dash_cooldown = 10
 var repulsion_cooldown = 10
 var shield_cooldown = 20

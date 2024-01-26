@@ -13,6 +13,8 @@ const SPAWN_TIME = 0.5
 @onready var upgrade_menu = $UI/UpgradeMenu
 @onready var current_item = $UI/CurrentItem
 @onready var arrow = $UI/Arrow
+@onready var transition_screen = $TransitionScreen
+@onready var player = $Player
 
 var quotas = [1500, 3000, 4500]
 var round_times = [60, 180, 180]
@@ -55,10 +57,11 @@ func _physics_process(delta):
 			arrow.begin_tracking(king)
 			add_child(king)
 			add_child(castle)
+			king.king_death.connect(_on_item_used)
 
 func _on_round_timer_timeout():
 	if Global.tile_count < rounds[Global.current_round]["quota"]:
-		print("GAME OVER")
+		game_over()
 
 func create_rounds_dict(quotas, round_times):
 	for round in range(quotas.size()):
@@ -116,4 +119,14 @@ func _on_player_new_item(item):
 	actual_item.item_used.connect(_on_item_used)
 
 func _on_item_used():
-	current_item.item_used()	
+	current_item.item_used()
+
+func _on_king_death():
+	Global.next_scene = "res://Scenes/victory_screen.tscn"
+	transition_screen.transition()
+
+func _on_transition_screen_transitioned():
+	get_tree().change_scene_to_file(Global.next_scene)
+	
+func game_over():
+	player.death()

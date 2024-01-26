@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var sprite_timer = $Timers/SpriteTimer
 @onready var power_timer = $Timers/PowerTimer
 @onready var camera = $Camera2D
+@onready var transition_screen = get_node("/root/Game/TransitionScreen")
 
 var health = 3
 var sprite_flash = 0
@@ -38,8 +39,7 @@ func _physics_process(delta):
 		damage_timer.start()
 		sprite_timer.start()
 		if health <= 0:
-			print("Game Over")
-			breakpoint
+			death()
 		
 func change_weapon(weapon):
 	for child in weapon_holder.get_children():
@@ -131,3 +131,7 @@ func remove_weapons():
 
 func shift_camera():
 	camera.position.y -= 40
+	
+func death():
+	Global.next_scene = "res://Scenes/victory_screen.tscn"
+	transition_screen.transition()

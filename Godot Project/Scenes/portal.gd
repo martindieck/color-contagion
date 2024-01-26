@@ -1,5 +1,7 @@
 extends Area2D
 
+@onready var transition_screen = get_node("/root/Game/TransitionScreen")
+
 func _on_body_entered(body):
 	if body.name == "Player":
 		Global.tile_count = 0
@@ -8,4 +10,5 @@ func _on_body_entered(body):
 		Global.near_misses = 0
 		Global.total_enemies_killed = 0
 		Global.total_near_misses = 0
-		get_tree().change_scene_to_file("res://Scenes/game.tscn")
+		Global.next_scene = "res://Scenes/game.tscn"
+		transition_screen.transition()

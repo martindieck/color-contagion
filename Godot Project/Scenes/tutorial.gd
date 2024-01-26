@@ -62,3 +62,6 @@ func _on_miss_count_area_body_entered(body):
 	if body.name == "Player":
 		flash_asset(miss_counter)
 		Global.near_misses = Global.miss_bar_threshold - 1
+
+func _on_transition_screen_transitioned():
+	get_tree().change_scene_to_file(Global.next_scene)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d4kxitc1riduf"]
+[gd_scene load_steps=22 format=3 uid="uid://d4kxitc1riduf"]
 
 [ext_resource type="Script" path="res://Scenes/tutorial.gd" id="1_03kib"]
 [ext_resource type="PackedScene" uid="uid://dvrwosdr16poa" path="res://Scenes/background.tscn" id="2_igiea"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://clbc2j4o6isra" path="res://Scenes/arrow.tscn" id="14_dr8y1"]
 [ext_resource type="PackedScene" uid="uid://b8pwuug5bvw4u" path="res://Scenes/farmer.tscn" id="16_npxn5"]
 [ext_resource type="PackedScene" uid="uid://cm86liyxy4fdx" path="res://Scenes/portal.tscn" id="17_a3eg7"]
+[ext_resource type="PackedScene" uid="uid://dsadeqpy6fp" path="res://Scenes/transition_screen.tscn" id="18_fanb0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p316t"]
 texture = ExtResource("3_2vk4r")
@@ -463,6 +464,8 @@ alive = false
 [node name="Portal" parent="." instance=ExtResource("17_a3eg7")]
 position = Vector2(22785, 2227)
 
+[node name="TransitionScreen" parent="." instance=ExtResource("18_fanb0")]
+
 [connection signal="timeout" from="Timers/FlashTimer" to="." method="_on_flash_timer_timeout"]
 [connection signal="timeout" from="Timers/Buffer" to="." method="_on_buffer_timeout"]
 [connection signal="body_entered" from="Labels/GunArea" to="." method="_on_gun_area_body_entered"]
@@ -471,3 +474,4 @@ position = Vector2(22785, 2227)
 [connection signal="body_entered" from="Labels/EnemyCountArea" to="." method="_on_enemy_count_area_body_entered"]
 [connection signal="body_entered" from="Labels/MissCountArea" to="." method="_on_miss_count_area_body_entered"]
 [connection signal="new_item" from="Player" to="." method="_on_player_new_item"]
+[connection signal="transitioned" from="TransitionScreen" to="." method="_on_transition_screen_transitioned"]

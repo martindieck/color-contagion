@@ -7,8 +7,11 @@ extends CharacterBody2D
 @onready var camera = $Camera2D
 
 const SPEED = 250
+
 var alive = true
 var health = 1
+
+signal king_death
 
 func _ready():
 	sprite.play("moving")
@@ -39,3 +42,7 @@ func death():
 	Global.enemies_killed += 1
 	sprite.play("death")
 	collision.set_deferred("disabled", true)
+
+func _on_animated_sprite_2d_animation_finished():
+	if sprite.animation == "death":
+		king_death.emit()
