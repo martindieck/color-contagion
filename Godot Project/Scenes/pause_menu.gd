@@ -28,10 +28,10 @@ func _on_resume_pressed():
 
 func _on_main_menu_pressed():
 	Global.next_scene = "res://Scenes/main_menu.tscn"
-	hide()
 	$TransitionScreen.transition()
 
 func _on_transition_screen_transitioned():
+	hide()
 	get_tree().paused = false
 	Global.paused = false
 	get_tree().change_scene_to_file(Global.next_scene)

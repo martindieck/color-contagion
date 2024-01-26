@@ -50,10 +50,10 @@ text = "Music:"
 
 [node name="HSlider" type="HSlider" parent="."]
 layout_mode = 0
-offset_left = 188.0
-offset_top = 65.0
-offset_right = 345.0
-offset_bottom = 81.0
+offset_left = 187.0
+offset_top = 68.0
+offset_right = 344.0
+offset_bottom = 84.0
 max_value = 1.0
 step = 0.001
 value = 1.0

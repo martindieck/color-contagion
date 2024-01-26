@@ -71,7 +71,7 @@ text = "Main Menu"
 layout_mode = 2
 
 [node name="TransitionScreen" parent="." instance=ExtResource("3_4xne3")]
-layer = 10
+layer = 11
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
