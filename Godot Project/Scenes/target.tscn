@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dahiue1r1qcv0" path="res://Sprites/Target.png" id="1_d51mr"]
 
 [node name="Target" type="Node2D"]
+top_level = true
 scale = Vector2(5, 5)
 script = ExtResource("1_0ax7q")
 
