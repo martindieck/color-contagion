@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://biw4ue46eoaas"]
+[gd_scene load_steps=11 format=3 uid="uid://biw4ue46eoaas"]
 
 [ext_resource type="Script" path="res://Scenes/shield.gd" id="1_8xmpv"]
 [ext_resource type="Texture2D" uid="uid://bxs7ewqjg2d65" path="res://Sprites/Shield-Sheet.png" id="2_24jcj"]
+[ext_resource type="Texture2D" uid="uid://b8i6rvqtlkmrs" path="res://Sprites/Shield.png" id="2_l2hgy"]
 [ext_resource type="Texture2D" uid="uid://bmgppf3llf8i" path="res://Sprites/purpleParticle.png" id="3_oe45p"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u2ut4"]
-atlas = ExtResource("2_24jcj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4852"]
+atlas = ExtResource("2_l2hgy")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1vtvw"]
@@ -20,7 +21,7 @@ region = Rect2(48, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u2ut4")
+"texture": SubResource("AtlasTexture_k4852")
 }],
 "loop": true,
 "name": &"idle",

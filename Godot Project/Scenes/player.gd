@@ -117,7 +117,7 @@ func power_up():
 			const WEAPON = preload("res://Scenes/flamethrower.tscn")
 			var new_weapon = WEAPON.instantiate()
 			power_holder.add_child(new_weapon)
-	power_holder.get_children()[0].reverse = -1
+	power_holder.get_children()[0].reverse = 1
 
 func _on_power_timer_timeout():
 	for child in power_holder.get_children():

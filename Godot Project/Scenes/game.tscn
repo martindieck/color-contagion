@@ -151,16 +151,19 @@ anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -253.0
-offset_top = -97.0
-offset_right = -253.0
-offset_bottom = -97.0
+offset_left = -386.0
+offset_top = -129.0
+offset_right = -386.0
+offset_bottom = -129.0
 grow_vertical = 0
 
 [node name="TransitionScreen" parent="." instance=ExtResource("15_ofacw")]
+
+[node name="Enemies" type="Node2D" parent="."]
 
 [connection signal="timeout" from="Timers/ChangeTimer" to="." method="_on_change_timer_timeout"]
 [connection signal="timeout" from="Timers/SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="Timers/RoundTimer" to="." method="_on_round_timer_timeout"]
 [connection signal="new_item" from="Player" to="." method="_on_player_new_item"]
+[connection signal="finished_upgrading" from="UI/UpgradeMenu" to="." method="_on_upgrade_menu_finished_upgrading"]
 [connection signal="transitioned" from="TransitionScreen" to="." method="_on_transition_screen_transitioned"]

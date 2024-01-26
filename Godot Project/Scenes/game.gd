@@ -15,9 +15,10 @@ const SPAWN_TIME = 0.5
 @onready var transition_screen = $TransitionScreen
 @onready var player = $Player
 @onready var announcements = $UI/Announcements
+@onready var enemies = $Enemies
 
-var quotas = [1500, 3000, 4500]
-var round_times = [180, 180, 180]
+var quotas = [25000, 100000, 150000]
+var round_times = [180, 120, 90]
 var rounds = {}
 var spawn_increase = 0
 var finished = false
@@ -42,9 +43,6 @@ func _physics_process(delta):
 			spawn_increase = floorf(0.45 / rounds[Global.current_round]["time"])
 			spawn_timer.wait_time = SPAWN_TIME
 			upgrade_menu.upgrade()
-			round_timer.set_wait_time(rounds[Global.current_round]["time"])
-			round_timer.start()
-			announcements.show_message(false)
 		else:
 			spawn_timer.wait_time = SPAWN_TIME
 			change_timer.stop()
@@ -78,7 +76,7 @@ func spawn_mob():
 			var new_mob = preload("res://Scenes/farmer.tscn").instantiate()
 			spawner.progress_ratio = randf()
 			new_mob.global_position = spawner.global_position
-			add_child(new_mob)
+			enemies.add_child(new_mob)
 		2:
 			var choice = randi_range(1, 2)
 			var new_mob
@@ -89,7 +87,7 @@ func spawn_mob():
 					new_mob = preload("res://Scenes/knight.tscn").instantiate()
 			spawner.progress_ratio = randf()
 			new_mob.global_position = spawner.global_position
-			add_child(new_mob)
+			enemies.add_child(new_mob)
 		3:
 			var choice = randi_range(1, 3)
 			var new_mob
@@ -102,12 +100,12 @@ func spawn_mob():
 					new_mob = preload("res://Scenes/wolf.tscn").instantiate()
 			spawner.progress_ratio = randf()
 			new_mob.global_position = spawner.global_position
-			add_child(new_mob)
+			enemies.add_child(new_mob)
 		_:
 			var new_mob = preload("res://Scenes/farmer.tscn").instantiate()
 			spawner.progress_ratio = randf()
 			new_mob.global_position = spawner.global_position
-			add_child(new_mob)
+			enemies.add_child(new_mob)
 
 func _on_change_timer_timeout():
 	spawn_timer.wait_time -= spawn_increase
@@ -135,3 +133,11 @@ func _on_transition_screen_transitioned():
 func game_over():
 	actual_target.hide()
 	player.death()
+
+func _on_upgrade_menu_finished_upgrading():
+	round_timer.set_wait_time(rounds[Global.current_round]["time"])
+	round_timer.start()
+	announcements.show_message(false)
+	for body in enemies.get_children():
+		if body.has_method("death"):
+			body.death()

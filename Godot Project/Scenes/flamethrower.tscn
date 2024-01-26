@@ -33,7 +33,7 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="ShootTimer" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.1
 autostart = true
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_timer_timeout"]

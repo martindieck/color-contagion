@@ -10,6 +10,8 @@ var tooltip2
 var tooltip3
 var bigtext = "Press Shift to repel enemies around you. You're protected while it is active. (10 sec cooldown)"
 
+signal finished_upgrading
+
 @onready var choice1_but = %Choice1
 @onready var choice2_but = %Choice2
 @onready var choice3_but = %Choice3
@@ -60,8 +62,10 @@ func _on_choice_1_pressed():
 	hide()
 	if type == "weapon":
 		player.change_weapon(choice1)
+		finished_upgrading.emit()
 	elif type == "item":
 		player.add_item(choice1)
+		finished_upgrading.emit()
 
 func _on_choice_2_pressed():
 	Global.is_upgrading = false
@@ -69,8 +73,10 @@ func _on_choice_2_pressed():
 	hide()
 	if type == "weapon":
 		player.change_weapon(choice2)
+		finished_upgrading.emit()
 	elif type == "item":
 		player.add_item(choice2)
+		finished_upgrading.emit()
 
 func _on_choice_3_pressed():
 	Global.is_upgrading = false
@@ -78,8 +84,10 @@ func _on_choice_3_pressed():
 	hide()
 	if type == "weapon":
 		player.change_weapon(choice3)
+		finished_upgrading.emit()
 	elif type == "item":
 		player.add_item(choice3)
+		finished_upgrading.emit()
 
 func _on_choice_1_mouse_entered():
 	tooltext.text = "[center]%s[/center]" % tooltip1

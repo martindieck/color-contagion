@@ -19,7 +19,7 @@ var next_scene
 var dash_cooldown = 10
 var repulsion_cooldown = 10
 var shield_cooldown = 20
-var enemy_bar_threshold = 15
+var enemy_bar_threshold = 50
 var miss_bar_threshold = 15
 
 func format_number(num):
