@@ -11,6 +11,8 @@ var total_near_misses = 0
 var paused = false
 var is_upgrading = false
 var in_cutscene = false
+var fullscreen = false
+var volume = 1
 
 var next_scene
 
