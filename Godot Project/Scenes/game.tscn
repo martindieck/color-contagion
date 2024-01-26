@@ -47,6 +47,7 @@ scale = Vector2(0.2, 0.2)
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("5_6lh3g")
+autoplay = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 

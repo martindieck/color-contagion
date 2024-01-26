@@ -9,7 +9,6 @@ const SPAWN_TIME = 0.5
 @onready var spawn_timer = $Timers/SpawnTimer
 @onready var time_left = %TimeLeft
 @onready var spawner = get_node("/root/Game/Player/Spawner/Path2D/SpawnPoint")
-@onready var music = $MusicPlayer
 @onready var upgrade_menu = $UI/UpgradeMenu
 @onready var current_item = $UI/CurrentItem
 @onready var arrow = $UI/Arrow
@@ -17,17 +16,17 @@ const SPAWN_TIME = 0.5
 @onready var player = $Player
 
 var quotas = [1500, 3000, 4500]
-var round_times = [180, 180, 180]
+var round_times = [5, 180, 180]
 var rounds = {}
 var spawn_increase = 0
 var finished = false
+var actual_target
 
 func _ready():
-	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	var target = preload("res://Scenes/target.tscn").instantiate()
+	actual_target = target
 	add_child(target)
 	create_rounds_dict(quotas, round_times)
-	music.play()
 	round_timer.set_wait_time(rounds[Global.current_round]["time"])
 	round_timer.start()
 	spawn_increase = snappedf(0.45 / rounds[Global.current_round]["time"], 0.001)
@@ -123,6 +122,7 @@ func _on_item_used():
 
 func _on_king_death():
 	Global.next_scene = "res://Scenes/victory_screen.tscn"
+	actual_target.hide()
 	transition_screen.transition()
 
 func _on_transition_screen_transitioned():
@@ -130,4 +130,5 @@ func _on_transition_screen_transitioned():
 	get_tree().change_scene_to_file(Global.next_scene)
 	
 func game_over():
+	actual_target.hide()
 	player.death()
