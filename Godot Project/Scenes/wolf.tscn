@@ -4,9 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://wxmhbogasc5e" path="res://Sprites/WolfDeath-Sheet.png" id="2_qa3ne"]
 [ext_resource type="Texture2D" uid="uid://c8h4qmrlfd80p" path="res://Sprites/Wolf-Sheet.png" id="3_h44g7"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt2dl"]
-radius = 3.25
-height = 12.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1drh"]
+size = Vector2(9, 4.25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hrxgw"]
 atlas = ExtResource("2_qa3ne")
@@ -107,8 +106,8 @@ platform_on_leave = 2
 script = ExtResource("1_sue7o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-shape = SubResource("CapsuleShape2D_vt2dl")
+position = Vector2(0.25, -0.125)
+shape = SubResource("RectangleShape2D_l1drh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

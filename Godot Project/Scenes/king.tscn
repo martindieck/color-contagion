@@ -178,7 +178,7 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_3i3pe"]
 resource_name = "death"
-length = 5.0
+length = 6.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -223,7 +223,7 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "clips": [{
-"end_offset": 2.1,
+"end_offset": 1.16,
 "start_offset": 1.28,
 "stream": ExtResource("4_p5yfr")
 }],

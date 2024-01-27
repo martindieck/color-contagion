@@ -17,7 +17,7 @@ const SPAWN_TIME = 0.5
 @onready var announcements = $UI/Announcements
 @onready var enemies = $Enemies
 
-var quotas = [250, 1000, 1500]
+var quotas = [25000, 65000, 100000]
 var round_times = [180, 120, 90]
 var rounds = {}
 var spawn_increase = 0
